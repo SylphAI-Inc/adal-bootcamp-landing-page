@@ -123,6 +123,35 @@ h1 strong {
   color: var(--adal-pink);
 }
 
+@media (min-width: 1600px) {
+  html {
+    font-size: clamp(16px, 1.15vw, 25px);
+  }
+
+  .slide {
+    padding: clamp(3rem, 6vw, 8rem);
+  }
+
+  .brand img {
+    width: 124px;
+  }
+
+  h1 {
+    font-size: clamp(4.5rem, 6.6vw, 9rem);
+  }
+
+  .lede {
+    max-width: 52rem;
+    font-size: clamp(1.2rem, 1.55vw, 1.8rem);
+  }
+
+  .nav button {
+    width: 3.2rem;
+    height: 3.2rem;
+    font-size: 1.2rem;
+  }
+}
+
 @media (max-width: 680px) {
   body {
     overflow: auto;
