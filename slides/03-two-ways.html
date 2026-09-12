@@ -1,124 +1,23 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Two Ways to Build a Landing Page</title>
-<style>
-  :root { --ink:#101012; --paper:#f7f5f2; --muted:#706e72; --line:#d9d5d0; --pink:#ff5898; --dark:#0d0d0f; --panel:#17171a; }
-  * { box-sizing:border-box; margin:0; }
-  html { font-size:clamp(12px, 1.45vw, 20px); }
-  body { overflow:hidden; background:var(--dark); color:#fff; font-family:-apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
-  .deck { height:100vh; width:100vw; }
-  .slide { position:absolute; inset:0; display:none; flex-direction:column; justify-content:center; padding:clamp(30px, 6vh, 72px) clamp(26px, 8vw, 150px); overflow:hidden; }
-  .slide.active { display:flex; background:var(--dark); color:#fff; }
-  .dark { background:var(--dark); color:#fff; }
-  .eyebrow { width:max-content; color:var(--pink); border:1px solid currentColor; border-radius:999px; padding:.34em .78em; font-size:.7em; font-weight:750; letter-spacing:.08em; text-transform:uppercase; margin-bottom:1em; }
-  h1 { max-width:22ch; font-size:clamp(2.1em, 5vw, 4.3em); font-weight:780; letter-spacing:-.065em; line-height:.98; }
-  .lede { max-width:42em; margin-top:1em; color:var(--muted); font-size:clamp(.95em, 1.65vw, 1.25em); line-height:1.5; }
-  .dark .lede { color:#a3a0a7; }
-  .accent { color:var(--pink); }
-  .choice-grid { display:grid; grid-template-columns:1fr 1fr; gap:1em; max-width:68em; width:100%; margin-top:2.5em; }
-  .choice { min-height:12.5em; border:1px solid #333239; border-radius:18px; padding:1.6em; background:var(--panel); }
-  .choice.dark-choice { border-color:#333239; background:var(--panel); }
-  .choice .number { color:var(--pink); font-family:"SF Mono", Menlo, monospace; font-size:.8em; font-weight:700; }
-  .choice h2 { margin-top:.35em; font-size:clamp(1.15em, 2vw, 1.65em); letter-spacing:-.035em; }
-  .choice p { max-width:32em; margin-top:.75em; color:#aaa7b0; font-size:.92em; line-height:1.55; }
-  .dark-choice p { color:#aaa7b0; }
-  .method-layout { display:grid; grid-template-columns:minmax(0,1.12fr) minmax(20em,.88fr); align-items:center; gap:clamp(2em, 5vw, 6em); max-width:72em; width:100%; }
-  .steps { display:grid; gap:.75em; margin-top:1.8em; }
-  .step { display:grid; grid-template-columns:2.1em 1fr; column-gap:.8em; align-items:start; padding:.9em 0; border-top:1px solid #2b2a2f; }
-  .dark .step { border-color:#2b2a2f; }
-  .step:last-child { border-bottom:1px solid #2b2a2f; }
-  .dark .step:last-child { border-color:#2b2a2f; }
-  .step-no { color:var(--pink); font-family:"SF Mono", Menlo, monospace; font-size:.78em; font-weight:700; padding-top:.23em; }
-  .step strong { display:block; font-size:1.04em; letter-spacing:-.015em; }
-  .step span { display:block; color:var(--muted); font-size:.87em; line-height:1.45; margin-top:.15em; }
-  .dark .step span { color:#a3a0a7; }
-  .tool-note { margin-top:1.15em; border-left:2px solid var(--pink); padding:.15em 0 .15em 1em; color:var(--muted); font-size:.84em; line-height:1.55; }
-  .dark .tool-note { color:#aaa7b0; }
-  .shot-wrap { position:relative; border-radius:18px; overflow:hidden; background:#111; box-shadow:0 24px 55px rgba(0,0,0,.22); }
-  .shot-wrap img { width:100%; max-height:53vh; object-fit:contain; display:block; }
-  .shot-label { position:absolute; top:1em; right:1em; padding:.45em .7em; border-radius:999px; background:rgba(13,13,15,.82); color:#fff; font-size:.72em; font-weight:700; backdrop-filter:blur(8px); }
-  .prompt { margin-top:1.1em; border:1px solid #37353a; border-radius:12px; background:#141417; padding:1em 1.1em; color:#d7d5d9; font-family:"SF Mono", Menlo, monospace; font-size:.76em; line-height:1.55; }
-  .prompt b { color:var(--pink); font-weight:600; }
-  .free-note { margin-top:1em; color:#a3a0a7; font-size:.82em; line-height:1.5; }
-  .nav { position:fixed; right:2em; bottom:1.35em; z-index:3; display:flex; gap:.45em; }
-  .nav button { width:2.5em; height:2.5em; border:1px solid #3a383f; border-radius:50%; background:#1a191d; color:#fff; cursor:pointer; font-size:1em; }
-  .nav button:hover:not(:disabled) { border-color:var(--pink); color:var(--pink); }
-  .nav button:disabled { opacity:.25; cursor:default; }
-  .dark ~ .nav button { background:#1a191d; border-color:#35333a; color:#fff; }
-  @media (max-width:700px) { .choice-grid,.method-layout { grid-template-columns:1fr; } .slide { justify-content:flex-start; padding-top:12vh; overflow:auto; } .shot-wrap img { max-height:35vh; } }
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Clone or Use a Prompt — V2</title>
+  <style>
+    :root{--base:#050505;--surface:#0a0a0a;--border:rgba(255,255,255,.1);--pink:#ff5898;--text:#fff;--body:rgba(255,255,255,.78);--muted:rgba(255,255,255,.5)}
+    *{box-sizing:border-box}body{margin:0;background:var(--base);color:var(--text);font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;overflow:hidden}.deck{width:100vw;height:100vh}.slide{display:none;position:absolute;inset:0;padding:clamp(2rem,5vw,5rem);background:radial-gradient(circle at 78% 18%,rgba(255,88,152,.11),transparent 28rem),var(--base)}.slide.active{display:flex;flex-direction:column}.top{display:flex;justify-content:space-between;align-items:center}.brand img{width:100px;height:auto}.count{display:none}.content{width:100%;max-width:none;margin:auto}.shot{max-width:1215px}.eyebrow{margin:0;color:var(--pink);font:600 .72rem/1 "SF Mono",Menlo,monospace;letter-spacing:.1em;text-transform:uppercase}h1{max-width:16ch;margin:.8rem 0 0;font-size:clamp(2.8rem,6vw,6.2rem);font-weight:400;letter-spacing:-.07em;line-height:.92}h1 strong{font-weight:650}.lede{max-width:43rem;margin:1.35rem 0 0;color:var(--body);font-size:clamp(1rem,1.7vw,1.32rem);line-height:1.55}.choices{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:2rem}.choice{min-height:15rem;padding:1.6rem;border:1px solid var(--border);border-radius:1.5rem;background:rgba(255,255,255,.025)}.choice h2{margin:1rem 0 0;font-size:clamp(1.6rem,2.7vw,2.3rem);font-weight:450;letter-spacing:-.05em;line-height:1.02}.choice p{margin:.8rem 0 0;color:var(--body);line-height:1.55}.label{color:var(--pink);font:600 .72rem "SF Mono",Menlo,monospace;letter-spacing:.1em}.split{display:grid;grid-template-columns:1fr 1fr;gap:clamp(2rem,6vw,6rem);align-items:center}.steps{margin-top:1.6rem;border-top:1px solid var(--border)}.step{display:grid;grid-template-columns:3rem 1fr;gap:.9rem;padding:.85rem 0;border-bottom:1px solid var(--border)}.num{color:var(--pink);font:600 .75rem "SF Mono",Menlo,monospace;padding-top:.25rem}.step h2{margin:0;font-size:1.12rem;font-weight:550;letter-spacing:-.03em}.step p{margin:.25rem 0 0;color:var(--body);line-height:1.45}.panel{padding:2rem;border:1px solid var(--border);border-radius:1.5rem;background:radial-gradient(circle at 70% 10%,rgba(255,88,152,.18),transparent 33%),rgba(255,255,255,.025)}.panel h2{margin:.8rem 0 0;font-size:clamp(1.6rem,3vw,2.5rem);font-weight:450;letter-spacing:-.05em;line-height:1.02}.panel p{margin:1rem 0 0;color:var(--body);line-height:1.55}.prompt{margin-top:1.25rem;padding:1rem 1.1rem;border:1px solid var(--border);border-radius:1rem;background:#101014;color:#dedbe1;font:clamp(.72rem,1.1vw,.88rem)/1.55 "SF Mono",Menlo,monospace}.prompt b{color:var(--pink)}.shot{width:100%;max-height:53vh;object-fit:contain;border:1px solid var(--border);border-radius:1.4rem;box-shadow:0 18px 45px rgba(0,0,0,.28)}.caption{margin:.75rem 0 0;color:var(--muted);font-size:.84rem;line-height:1.45}.nav{position:fixed;right:2rem;bottom:1.5rem;display:flex;gap:.5rem}.nav button{width:2.6rem;height:2.6rem;border:1px solid var(--border);border-radius:50%;background:#101014;color:#fff;font-size:1rem;cursor:pointer}.nav button:disabled{opacity:.25}.nav button:hover:not(:disabled){border-color:var(--pink);color:var(--pink)}
+    @media(max-width:680px){body{overflow:auto}.slide{min-height:100vh;overflow:auto;padding:1.35rem 1.25rem 5rem}.content{margin:3rem auto}.top .count{display:none}.choices,.split{grid-template-columns:1fr}.choice{min-height:unset}.panel{padding:1.35rem}.shot{max-height:38vh}.nav{right:1rem;bottom:1rem}}
+  </style>
+  <link rel="stylesheet" href="../shared.css">
 </head>
 <body>
 <div class="deck">
-  <section class="slide active">
-    <span class="eyebrow">The starting point</span>
-    <h1>Two ways to build a landing page.</h1>
-    <p class="lede">Choose the input. AdaL handles the research, build, and visual checks.</p>
-    <div class="choice-grid">
-      <article class="choice">
-        <span class="number">01 / CLONE</span>
-        <h2>Start with a page you like.</h2>
-        <p>Use an existing landing page, Framer site, or free preview. Reverse-engineer it, then make it yours.</p>
-      </article>
-      <article class="choice">
-        <span class="number">02 / AVAILABLE PROMPT</span>
-        <h2>Start with a prompt you can copy.</h2>
-        <p>Use an AI-native prompt from a library such as MotionSites, then adapt it for your product.</p>
-      </article>
-    </div>
-  </section>
-
-  <section class="slide dark">
-    <div class="method-layout">
-      <div>
-        <span class="eyebrow">01 / Clone and remix</span>
-        <h1>Use evidence,<br>not guesswork.</h1>
-        <p class="lede">Give AdaL the page. It gathers the facts needed to rebuild the look and motion, then you change the product, copy, and brand.</p>
-        <div class="steps">
-          <div class="step"><span class="step-no">01</span><div><strong>Screenshots</strong><span>Capture the page at desktop, tablet, and mobile widths. This is the visual reference.</span></div></div>
-          <div class="step"><span class="step-no">02</span><div><strong>Inspect</strong><span>Read the live DOM for colors, fonts, spacing, assets, and animation rules.</span></div></div>
-          <div class="step"><span class="step-no">03</span><div><strong>Record motion</strong><span>Study the hero animation frame by frame for sequence, timing, and easing.</span></div></div>
-        </div>
-        <p class="tool-note"><b class="accent">Built in:</b> browser-use for screenshots and inspection; video for motion review.</p>
-      </div>
-      <div class="shot-wrap" aria-label="Clone workflow summary">
-        <div class="shot-label">Clone → remix</div>
-        <div style="padding:2.2em 2em 2em;min-height:25em;display:flex;flex-direction:column;justify-content:center;background:radial-gradient(circle at 72% 18%,rgba(255,88,152,.22),transparent 30%),#17171a">
-          <div style="font:700 .72em 'SF Mono',Menlo,monospace;color:#ff5898;letter-spacing:.1em">ADA L WORKFLOW</div>
-          <div style="font-size:clamp(1.35em,2.3vw,2em);font-weight:750;letter-spacing:-.045em;line-height:1.1;margin-top:.45em">Screenshot<br>→ inspect<br>→ record<br>→ build<br>→ compare</div>
-          <div style="height:1px;background:#37353a;margin:1.5em 0"></div>
-          <p style="color:#aaa7b0;font-size:.85em;line-height:1.55">Previous class targets: Hyperspell and Xtract Framer. The build and screenshot comparison converged in 2–3 rounds.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="slide">
-    <div class="method-layout">
-      <div>
-        <span class="eyebrow">02 / Available prompt</span>
-        <h1>Copy the prompt.<br><span class="accent">Paste it into AdaL.</span></h1>
-        <p class="lede">AI-native design libraries package their taste as prompts. The prompt is the brief: copy it, replace the product details, and ask AdaL to build and verify it.</p>
-        <div class="prompt"><b>&gt;</b> Build this landing page prompt for <b>MY_PRODUCT</b>. Keep the layout and motion direction, but rewrite the copy, colors, and visual assets for my brand. Build responsive desktop and mobile versions, then open the result and fix visual problems.</div>
-        <p class="free-note"><b>Without paying:</b> use a library’s free preview as a reference for the clone method, or copy a free prompt/component from 21st.dev, Magic UI, or an available MotionSites prompt.</p>
-      </div>
-      <figure class="shot-wrap">
-        <img src="../assets/screenshots/03-motionsites-copy-prompt.png" alt="MotionSites preview with Copy full prompt button">
-        <span class="shot-label">Copy full prompt</span>
-      </figure>
-    </div>
-  </section>
+  <section class="slide active"><div class="top"><a class="brand" href="../index.html"><img src="../assets/adal-logo-horizontal.svg" alt="AdaL"></a></div><main class="content"><p class="eyebrow">Choose the input</p><h1>Two ways to<br><strong>start the page.</strong></h1><p class="lede">Start with a page you want to study, or a prompt you can copy. Both give AdaL enough direction to begin the build.</p><div class="choices"><article class="choice"><span class="label">01 / CLONE</span><h2>Start with a page.</h2><p>Use a landing page, Framer site, or free animated preview. Inspect it, rebuild its design direction, then adapt it for your product.</p></article><article class="choice"><span class="label">02 / AVAILABLE PROMPT</span><h2>Start with a prompt.</h2><p>Use an AI-native prompt from MotionSites, 21st.dev, Magic UI, or another available library. Replace the product details and build.</p></article></div></main></section>
+  <section class="slide"><div class="top"><a class="brand" href="../index.html"><img src="../assets/adal-logo-horizontal.svg" alt="AdaL"></a></div><main class="content split"><div><p class="eyebrow">Clone a reference</p><h1>Use evidence,<br><strong>not guesswork.</strong></h1><p class="lede">The reference is a source of visual facts. Gather them before you write the page.</p><div class="steps"><div class="step"><span class="num">01</span><div><h2>Screenshots</h2><p>Capture desktop, tablet, and mobile views of the reference.</p></div></div><div class="step"><span class="num">02</span><div><h2>Inspect</h2><p>Read colors, fonts, spacing, assets, and animation rules from the live page.</p></div></div><div class="step"><span class="num">03</span><div><h2>Record motion</h2><p>Use video to study sequence, timing, and easing frame by frame.</p></div></div></div></div><aside class="panel"><span class="label">RESULT</span><h2>A design spec<br>you can build from.</h2><p>Browser use gives the layout evidence. Video gives the motion evidence. Then AdaL can build and compare the result.</p></aside></main></section>
+  <section class="slide"><div class="top"><a class="brand" href="../index.html"><img src="../assets/adal-logo-horizontal.svg" alt="AdaL"></a></div><main class="content split"><div><p class="eyebrow">Available prompt</p><h1>Copy the prompt.<br><strong>Paste it into AdaL.</strong></h1><p class="lede">A prompt library gives you a finished design direction as text. Keep what you like; replace the details that make the page yours.</p><div class="prompt"><b>&gt;</b> Build this landing page for <b>MY_PRODUCT</b>. Keep the layout and motion direction, but rewrite the copy, colors, and visual assets for my brand. Build responsive desktop and mobile versions. Open the result and fix visible problems.</div><p class="caption">No-pay option: use a free preview as a clone reference, or copy a free prompt or component from an available library.</p></div><figure><img class="shot" src="../assets/screenshots/03-motionsites-copy-prompt.png" alt="MotionSites Copy full prompt example"><figcaption class="caption">MotionSites: the preview is on the left; the prompt is available to copy on the right.</figcaption></figure></main></section>
 </div>
 <div class="nav"><button id="prev" onclick="changeSlide(-1)" aria-label="Previous slide">←</button><button id="next" onclick="changeSlide(1)" aria-label="Next slide">→</button></div>
-<script>
-  let current=0; const slides=document.querySelectorAll('.slide');
-  function show(n){ slides[current].classList.remove('active'); current=Math.max(0,Math.min(n,slides.length-1)); slides[current].classList.add('active'); document.getElementById('prev').disabled=current===0; document.getElementById('next').disabled=current===slides.length-1; }
-  function changeSlide(d){show(current+d);}
-  document.addEventListener('keydown',e=>{if(e.key==='ArrowRight'||e.key===' ')changeSlide(1);if(e.key==='ArrowLeft')changeSlide(-1);});
-  show(0);
-</script>
+<script>let current=0;const slides=document.querySelectorAll('.slide');function show(n){slides[current].classList.remove('active');current=Math.max(0,Math.min(n,slides.length-1));slides[current].classList.add('active');prev.disabled=current===0;next.disabled=current===slides.length-1}function changeSlide(d){show(current+d)}document.addEventListener('keydown',e=>{if(e.key==='ArrowRight'||e.key===' ')changeSlide(1);if(e.key==='ArrowLeft')changeSlide(-1)});show(0)</script>
 </body>
 </html>

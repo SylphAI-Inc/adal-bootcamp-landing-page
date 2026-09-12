@@ -1,28 +1,17 @@
 # Landing Page Design with AdaL
 
-HTML class materials for building a landing page with AdaL.
+Course materials for building landing pages with AdaL.
 
-## Open the materials
+## Open the course
 
-Open these files in a browser:
+- GitHub Pages: https://sylphai-inc.github.io/adal-bootcamp-landing-page/
 
-- `slides/01-setup.html` — install, Discord, `/model`, `/capabilities`, and permission modes
-- `slides/02-capabilities.html` — browser-use, video, capability loading, and the auto-development loop
-- `slides/03-two-ways.html` — clone a reference or use an available AI-native prompt
-- `slides/04-references.html` — clickable reference libraries and copyable prompts
+## Materials
 
-Use the arrow keys or on-screen controls to navigate slide decks.
+- `slides/01-setup.html` — setup and permission modes
+- `slides/02-capabilities.html` — browser use, video, and the build–check–fix loop
+- `slides/03-two-ways.html` — clone a reference or use an available prompt
+- `slides/04-skills-setup.html` — Clone Any Website skill link and copyable AdaL command
+- `slides/04-resources.html` — landing-page references and prompts
 
-## Class workflow
-
-1. Choose a starting point: a live page to clone or an available prompt.
-2. Ask AdaL to inspect the reference and build the page.
-3. Check the result at desktop, tablet, and mobile widths.
-4. Review motion with video when needed.
-5. Use the evidence to fix the next pass.
-
-## Resources
-
-- [AdaL quickstart](https://docs.sylph.ai/getting-started/quickstart)
-- [AdaL Discord](https://discord.gg/adalagent)
-- [MotionSites](https://motionsites.ai/)
+Use the arrow keys or on-screen arrows to move through each deck.

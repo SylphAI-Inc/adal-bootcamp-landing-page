@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Clone Any Website</title>
+  <link rel="stylesheet" href="../shared.css">
+  <style>
+    .skill-page { width: min(1120px, 100%); margin: auto; }
+    .skill-card { margin-top: 2rem; padding: clamp(1.35rem, 3vw, 2.25rem); border: 1px solid var(--adal-border); border-radius: 1.5rem; background: rgba(255, 255, 255, 0.025); }
+    .skill-link { display: inline-flex; margin-top: 1.25rem; color: var(--adal-pink); font: 600 0.9rem/1.3 "SF Mono", Menlo, monospace; text-decoration: none; }
+    .skill-link:hover { text-decoration: underline; text-underline-offset: 0.25em; }
+    .command-row { display: flex; align-items: stretch; gap: 0.7rem; margin-top: 2rem; }
+    .command { flex: 1; min-width: 0; margin: 0; padding: 1.1rem 1.2rem; border: 1px solid rgba(255, 88, 152, 0.5); border-radius: 1rem; background: rgba(255, 88, 152, 0.065); color: #f1eef2; font: clamp(0.7rem, 1.12vw, 0.92rem)/1.55 "SF Mono", Menlo, monospace; overflow-wrap: anywhere; }
+    .prompt { color: var(--adal-pink); }
+    .copy-button { border: 1px solid rgba(255, 88, 152, 0.65); border-radius: 1rem; padding: 0 1.15rem; background: var(--adal-pink); color: #210913; font: 700 0.82rem/1 Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; cursor: pointer; }
+    .copy-button.copied { background: #9be564; border-color: #9be564; }
+    @media (max-width: 680px) { .skill-page { margin: 3rem auto; } .command-row { flex-direction: column; } .copy-button { min-height: 3.15rem; } }
+  </style>
+</head>
+<body>
+<div class="deck">
+  <section class="slide active">
+    <div class="top"><a class="brand" href="../index.html" aria-label="Back to class home"><img src="../assets/adal-logo-horizontal.svg" alt="AdaL"></a></div>
+    <main class="content skill-page">
+      <p class="eyebrow">Skill setup</p>
+      <h1>Clone Any Website.</h1>
+      <section class="skill-card">
+        <a class="skill-link" href="https://atskills.one/SylphAI-Inc/clone-anywebsite" target="_blank" rel="noopener">atskills.one/SylphAI-Inc/clone-anywebsite ↗</a>
+        <div class="command-row">
+          <code id="skill-command" class="command"><span class="prompt">&gt;</span> @skills:gh:SylphAI-Inc/skills/skills/clone-anywebsite</code>
+          <button id="copy-command" class="copy-button" type="button" onclick="copySkillCommand()">Copy command</button>
+        </div>
+      </section>
+    </main>
+  </section>
+</div>
+<script>
+  function copySkillCommand() {
+    const command = document.getElementById('skill-command').innerText.trim().replace(/^>\s*/, '');
+    const button = document.getElementById('copy-command');
+    const done = () => {
+      button.textContent = 'Copied ✓';
+      button.classList.add('copied');
+      window.setTimeout(() => {
+        button.textContent = 'Copy command';
+        button.classList.remove('copied');
+      }, 1600);
+    };
+    if (navigator.clipboard && window.isSecureContext) {
+      navigator.clipboard.writeText(command).then(done).catch(() => fallbackCopy(command, done));
+      return;
+    }
+    fallbackCopy(command, done);
+  }
+  function fallbackCopy(command, done) {
+    const textarea = document.createElement('textarea');
+    textarea.value = command;
+    textarea.style.position = 'fixed';
+    textarea.style.opacity = '0';
+    document.body.appendChild(textarea);
+    textarea.select();
+    try { document.execCommand('copy'); done(); } finally { document.body.removeChild(textarea); }
+  }
+</script>
+</body>
+</html>

@@ -75,7 +75,7 @@ Every part answers four practical questions: **what do I give AdaL, what does it
 - **No-pay route:** use the free animated preview as a clone reference, or a free copyable prompt as direct input.
 
 ### 5. Research resources (~5 min)
-- Open `slides/04-references.html`; every resource opens in its own tab.
+- Open `slides/04-resources.html`; every resource opens in its own tab.
 - Choose a resource by need: prompts (MotionSites / 21st.dev), page structure (Lapa / One Page Love), interaction ideas (Awwwards / Godly), or product flows (Pageflows / Mobbin).
 - **Student outcome:** a shortlist of references, not an unbounded mood board.
 
@@ -114,7 +114,7 @@ Every part answers four practical questions: **what do I give AdaL, what does it
 ## Repo layout (this directory) — everything HTML
 ```
 docs/    class_plan.md (this)
-slides/  01-setup.html ✅ · 02-capabilities.html · 03-two-ways.html · 04-references.html · 05-workflow.html
+slides/  01-setup.html · 02-capabilities.html · 03-two-ways.html · 04-skills-setup.html · 04-resources.html
 demos/   demo scripts as HTML pages (prompt + steps + fallback recording links)
 assets/  adal logos ✅, screenshots/ (real CLI captures ✅)
 ```
