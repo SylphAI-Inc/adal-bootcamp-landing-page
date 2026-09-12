@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Landing Page Design with AdaL — free class materials">
+<title>Landing Page Design with AdaL</title>
+<style>
+  :root { --bg:#0d0d0f; --panel:#17171b; --panel-hover:#1e1d22; --line:#302e35; --text:#f7f5f7; --muted:#aaa6b0; --pink:#ff5898; --pink-soft:rgba(255,88,152,.14); }
+  * { box-sizing:border-box; }
+  html { scroll-behavior:smooth; }
+  body { margin:0; min-height:100vh; background:radial-gradient(circle at 80% 5%,rgba(255,88,152,.16),transparent 25em),var(--bg); color:var(--text); font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif; }
+  .wrap { width:min(1120px,calc(100% - 40px)); margin:0 auto; }
+  header { padding:clamp(52px,10vw,110px) 0 50px; border-bottom:1px solid var(--line); }
+  .eyebrow { display:inline-flex; align-items:center; gap:.5em; margin:0 0 1.2em; color:var(--pink); font:750 .75rem/1 "SF Mono",Menlo,monospace; letter-spacing:.09em; text-transform:uppercase; }
+  .eyebrow::before { content:""; width:.65em; height:.65em; border-radius:99px; background:var(--pink); box-shadow:0 0 20px var(--pink); }
+  h1 { max-width:11ch; margin:0; font-size:clamp(3.1rem,8vw,6.6rem); font-weight:780; letter-spacing:-.075em; line-height:.91; }
+  .pink { color:var(--pink); }
+  .intro { max-width:37em; margin:1.4em 0 0; color:var(--muted); font-size:clamp(1.05rem,2vw,1.3rem); line-height:1.55; }
+  .actions { display:flex; flex-wrap:wrap; gap:.75em; margin-top:2em; }
+  .button { display:inline-flex; align-items:center; gap:.45em; border-radius:999px; padding:.82em 1.1em; text-decoration:none; font-weight:700; transition:transform .15s,background .15s,border-color .15s; }
+  .button:hover { transform:translateY(-2px); }
+  .primary { color:#16050c; background:var(--pink); }.primary:hover { background:#ff79ae; }
+  .secondary { border:1px solid var(--line); color:var(--text); background:#151519; }.secondary:hover { border-color:var(--pink); }
+  main { padding:48px 0 72px; }
+  .section-title { margin:0 0 .35em; font-size:clamp(1.7rem,3vw,2.35rem); letter-spacing:-.045em; }
+  .section-copy { margin:0 0 1.7em; color:var(--muted); line-height:1.55; }
+  .cards { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:16px; }
+  .card { display:flex; min-height:218px; flex-direction:column; padding:24px; border:1px solid var(--line); border-radius:18px; background:var(--panel); color:inherit; text-decoration:none; transition:transform .18s,border-color .18s,background .18s,box-shadow .18s; }
+  .card:hover { transform:translateY(-4px); border-color:var(--pink); background:var(--panel-hover); box-shadow:0 16px 40px rgba(0,0,0,.25); }
+  .card-number { color:var(--pink); font:700 .75rem "SF Mono",Menlo,monospace; letter-spacing:.08em; }
+  .card h2 { max-width:15ch; margin:.8em 0 .4em; font-size:1.65rem; letter-spacing:-.04em; line-height:1.05; }
+  .card p { margin:0; color:var(--muted); line-height:1.5; }
+  .card .open { margin-top:auto; padding-top:1.5em; color:var(--pink); font-size:.9em; font-weight:700; }
+  .resource { margin-top:40px; display:grid; grid-template-columns:1fr auto; gap:20px; align-items:center; padding:25px; border:1px solid var(--line); border-radius:18px; background:linear-gradient(115deg,var(--panel),#1d151a); }
+  .resource h2 { margin:0; font-size:1.4rem; letter-spacing:-.035em; }.resource p { margin:.45em 0 0; color:var(--muted); line-height:1.5; }
+  footer { padding:28px 0 38px; color:#77737d; font-size:.9rem; border-top:1px solid var(--line); }
+  @media(max-width:700px) { .wrap{width:min(100% - 32px,1120px)} .cards{grid-template-columns:1fr}.resource{grid-template-columns:1fr}.resource .button{width:max-content} }
+</style>
+</head>
+<body>
+  <header>
+    <div class="wrap">
+      <p class="eyebrow">Free class materials</p>
+      <h1>Landing page design <span class="pink">with AdaL.</span></h1>
+      <p class="intro">Build a landing page from a reference you like or an available prompt. Then use browser and video checks to improve it.</p>
+      <div class="actions">
+        <a class="button primary" href="slides/01-setup.html">Start with setup <span>→</span></a>
+        <a class="button secondary" href="https://discord.gg/adalagent" target="_blank" rel="noopener">Join the Discord ↗</a>
+      </div>
+    </div>
+  </header>
+  <main class="wrap">
+    <h2 class="section-title">Class materials</h2>
+    <p class="section-copy">Open a deck, then use the arrow keys or the on-screen arrows to move through it.</p>
+    <div class="cards">
+      <a class="card" href="slides/01-setup.html"><span class="card-number">01 / SETUP</span><h2>Set up AdaL</h2><p>Join the class Discord, install on any operating system, learn the controls, and choose a permission mode.</p><span class="open">Open slides →</span></a>
+      <a class="card" href="slides/02-capabilities.html"><span class="card-number">02 / CAPABILITIES</span><h2>Browser, video, and the auto-dev loop</h2><p>See the real capability load card, inspect browser tools, and learn how visual evidence drives the next edit.</p><span class="open">Open slides →</span></a>
+      <a class="card" href="slides/03-two-ways.html"><span class="card-number">03 / STARTING POINT</span><h2>Clone or use an available prompt</h2><p>Choose a live reference to reverse-engineer, or copy a prompt from an AI-native design library.</p><span class="open">Open slides →</span></a>
+      <a class="card" href="slides/04-references.html"><span class="card-number">04 / RESOURCE LIBRARY</span><h2>Reference sites and prompts</h2><p>Browse clickable design resources and copy prompts you can paste straight into AdaL.</p><span class="open">Open resources →</span></a>
+    </div>
+    <section class="resource">
+      <div><h2>Need help during the class?</h2><p>Ask in Discord. Share your reference, prompt, screenshot, or deployed page so people can help you improve it.</p></div>
+      <a class="button primary" href="https://discord.gg/adalagent" target="_blank" rel="noopener">Open Discord ↗</a>
+    </section>
+  </main>
+  <footer><div class="wrap">Landing Page Design with AdaL</div></footer>
+</body>
+</html>
