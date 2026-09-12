@@ -1,0 +1,145 @@
+:root {
+  --adal-void: #030303;
+  --adal-base: #050505;
+  --adal-surface: #0a0a0a;
+  --adal-pink: #ff5898;
+  --adal-text: #ffffff;
+  --adal-body: rgba(255, 255, 255, 0.78);
+  --adal-muted: rgba(255, 255, 255, 0.5);
+  --adal-border: rgba(255, 255, 255, 0.1);
+}
+
+/* Shared deck frame: each V2 deck has one AdaL logo, the same canvas, and the same navigation. */
+body {
+  margin: 0;
+  background: var(--adal-base);
+  color: var(--adal-text);
+  font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+.deck {
+  width: 100vw;
+  height: 100vh;
+}
+
+.slide {
+  display: none;
+  position: absolute;
+  inset: 0;
+  padding: clamp(2rem, 5vw, 5rem);
+  background:
+    radial-gradient(circle at 78% 18%, rgba(255, 88, 152, 0.11), transparent 28rem),
+    var(--adal-base);
+}
+
+.slide.active {
+  display: flex;
+  flex-direction: column;
+}
+
+.top {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+}
+
+.brand img {
+  width: 100px;
+  height: auto;
+}
+
+.count {
+  display: none;
+}
+
+.content {
+  width: 100%;
+  max-width: none;
+  margin: auto;
+}
+
+.eyebrow,
+.label {
+  margin: 0;
+  color: var(--adal-pink);
+  font: 600 0.72rem/1 "SF Mono", Menlo, monospace;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+h1 {
+  max-width: 16ch;
+  margin: 0.8rem 0 0;
+  color: var(--adal-text);
+  font-size: clamp(2.8rem, 6vw, 6.2rem);
+  font-weight: 400;
+  letter-spacing: -0.07em;
+  line-height: 0.92;
+}
+
+h1 strong {
+  font-weight: 650;
+}
+
+.lede {
+  max-width: 45rem;
+  margin: 1.35rem 0 0;
+  color: var(--adal-body);
+  font-size: clamp(1rem, 1.7vw, 1.32rem);
+  line-height: 1.55;
+}
+
+.nav {
+  position: fixed;
+  right: 2rem;
+  bottom: 1.5rem;
+  z-index: 2;
+  display: flex;
+  gap: 0.5rem;
+}
+
+.nav button {
+  width: 2.6rem;
+  height: 2.6rem;
+  border: 1px solid var(--adal-border);
+  border-radius: 50%;
+  background: #101014;
+  color: var(--adal-text);
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.nav button:disabled {
+  opacity: 0.25;
+}
+
+.nav button:hover:not(:disabled) {
+  border-color: var(--adal-pink);
+  color: var(--adal-pink);
+}
+
+@media (max-width: 680px) {
+  body {
+    overflow: auto;
+  }
+
+  .slide {
+    min-height: 100vh;
+    padding: 1.35rem 1.25rem 5rem;
+    overflow: auto;
+  }
+
+  .content {
+    margin: 3rem auto;
+  }
+
+  .nav {
+    right: 1rem;
+    bottom: 1rem;
+  }
+}
