@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Set Up AdaL</title>
+<style>
+  :root { --ink:#101012; --paper:#f7f5f2; --muted:#706e72; --line:#d9d5d0; --pink:#ff5898; --dark:#0d0d0f; --panel:#17171a; }
+  * { box-sizing:border-box; margin:0; }
+  html { font-size:clamp(12px,1.45vw,20px); }
+  body { overflow:hidden; background:var(--dark); color:#fff; font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif; }
+  .deck { height:100vh; width:100vw; }
+  .slide { position:absolute; inset:0; display:none; flex-direction:column; justify-content:center; padding:clamp(30px,6vh,72px) clamp(26px,8vw,150px); overflow:hidden; }
+  .slide.active { display:flex; background:var(--dark); color:#fff; }
+  .dark { background:var(--dark); color:#fff; }
+  .eyebrow { width:max-content; color:var(--pink); border:1px solid currentColor; border-radius:999px; padding:.34em .78em; font-size:.7em; font-weight:750; letter-spacing:.08em; text-transform:uppercase; margin-bottom:1em; }
+  h1 { max-width:22ch; font-size:clamp(2.1em,5vw,4.3em); font-weight:780; letter-spacing:-.065em; line-height:.98; }
+  .lede { max-width:43em; margin-top:1em; color:var(--muted); font-size:clamp(.95em,1.65vw,1.25em); line-height:1.5; }
+  .dark .lede { color:#a3a0a7; }
+  .accent { color:var(--pink); }
+  .terminal { max-width:62em; width:100%; margin-top:1.8em; padding:1.25em 1.4em; border:1px solid #2c2b30; border-radius:16px; background:#151518; box-shadow:0 22px 50px rgba(0,0,0,.22); font:clamp(.78em,1.25vw,.98em)/1.7 "SF Mono",Menlo,monospace; color:#eee; }
+  .terminal .comment { color:#89858d; } .terminal .prompt { color:var(--pink); } .terminal .cmd { color:#fff; } .terminal a.cmd { text-decoration:underline; text-decoration-color:rgba(255,88,152,.55); text-underline-offset:.2em; } .terminal a.cmd:hover { color:var(--pink); } .terminal .output { color:#b8b5bb; }
+  .two-col { display:grid; grid-template-columns:1fr 1fr; gap:1em; max-width:64em; width:100%; margin-top:1.8em; }
+  .card { min-height:12em; padding:1.45em; border:1px solid #333139; border-radius:18px; background:#18181b; }
+  .dark .card { border-color:#333139; background:#18181b; }
+  .card .kicker { color:var(--pink); font:700 .72em "SF Mono",Menlo,monospace; letter-spacing:.08em; }
+  .card h2 { margin-top:.45em; font-size:1.25em; letter-spacing:-.04em; }
+  .card p { margin-top:.65em; color:var(--muted); font-size:.9em; line-height:1.55; }
+  .dark .card p { color:#aaa7b0; }
+  .command-list { display:grid; gap:.65em; width:100%; max-width:62em; margin-top:1.8em; }
+  .command { display:grid; grid-template-columns:10em 1fr; align-items:baseline; padding:.85em 0; border-top:1px solid #2b2a2f; }
+  .command:last-child { border-bottom:1px solid #2b2a2f; }
+  .command code { color:var(--pink); font:700 .95em "SF Mono",Menlo,monospace; }
+  .command p { color:#a3a0a7; font-size:.92em; line-height:1.4; }
+  .shot { max-width:60em; max-height:52vh; width:100%; object-fit:contain; margin-top:1.5em; border:1px solid #2c2b30; border-radius:18px; box-shadow:0 24px 55px rgba(0,0,0,.28); }
+  .caption { max-width:60em; margin-top:.8em; color:#99969d; font-size:.8em; line-height:1.45; }
+  .mode-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1em; width:100%; max-width:66em; margin-top:1.6em; }
+  .mode { min-height:14em; padding:1.4em; border:1px solid #333139; border-radius:18px; background:#18181b; }
+  .mode.active { border-color:var(--pink); box-shadow:0 0 0 2px rgba(255,88,152,.12); }
+  .mode .key { color:var(--pink); font:700 .72em "SF Mono",Menlo,monospace; letter-spacing:.08em; }
+  .mode h2 { margin-top:.55em; font-size:1.25em; letter-spacing:-.04em; }.mode p { margin-top:.7em; color:#a3a0a7; font-size:.88em; line-height:1.5; }
+  .nav { position:fixed; right:2em; bottom:1.35em; z-index:3; display:flex; gap:.45em; }.nav button { width:2.5em; height:2.5em; border:1px solid #3a383f; border-radius:50%; background:#1a191d; color:#fff; cursor:pointer; font-size:1em; }.nav button:hover:not(:disabled){border-color:var(--pink);color:var(--pink)}.nav button:disabled{opacity:.25;cursor:default}
+  @media(max-width:700px){.two-col,.mode-grid{grid-template-columns:1fr}.slide{justify-content:flex-start;padding-top:12vh;overflow:auto}.command{grid-template-columns:1fr;gap:.35em}.shot{max-height:38vh}}
+</style>
+</head>
+<body>
+<div class="deck">
+  <section class="slide dark active">
+    <span class="eyebrow">Before the class</span>
+    <h1>Set up AdaL<br>in two minutes.</h1>
+    <p class="lede">Join the Discord first. Use it to ask questions during class and share what you build.</p>
+    <div class="terminal">
+      <div><span class="comment"># join the class Discord — ask questions and share what you build</span></div>
+      <div><span class="prompt">↗</span> <a class="cmd" href="https://discord.gg/adalagent" target="_blank" rel="noopener">discord.gg/adalagent</a></div>
+      <div style="height:.7em"></div>
+      <div><span class="comment"># macOS, Linux, WSL</span></div>
+      <div><span class="prompt">$</span> <span class="cmd">curl -fsSL https://adal.sylph.ai/install.sh | bash</span></div>
+      <div style="height:.45em"></div>
+      <div><span class="comment"># Windows PowerShell</span></div>
+      <div><span class="prompt">PS&gt;</span> <span class="cmd">irm https://adal.sylph.ai/install/windows | iex</span></div>
+      <div style="height:.45em"></div>
+      <div><span class="comment"># Windows CMD</span></div>
+      <div><span class="prompt">&gt;</span> <span class="cmd">powershell -NoProfile -ExecutionPolicy Bypass -Command "irm https://adal.sylph.ai/install/windows | iex"</span></div>
+    </div>
+  </section>
+
+  <section class="slide">
+    <span class="eyebrow">Launch</span>
+    <h1>Open your project.<br>Start AdaL.</h1>
+    <p class="lede">The first launch opens the sign-in page. After that, credentials stay on this computer.</p>
+    <div class="terminal">
+      <div><span class="prompt">$</span> <span class="cmd">cd my-project</span></div>
+      <div><span class="prompt">$</span> <span class="cmd">adal</span></div>
+      <div style="height:.65em"></div>
+      <div><span class="output">Opening browser for authentication…</span></div>
+      <div><span class="output">Authenticated. Ready.</span></div>
+    </div>
+  </section>
+
+  <section class="slide dark">
+    <span class="eyebrow">Three commands</span>
+    <h1>The controls<br>you need today.</h1>
+    <div class="command-list">
+      <div class="command"><code>/init</code><p>Give AdaL project context before the build starts.</p></div>
+      <div class="command"><code>/model</code><p>Choose the right model for research, design, or implementation.</p></div>
+      <div class="command"><code>/capabilities</code><p>See browser-use and video when the work needs them.</p></div>
+    </div>
+  </section>
+
+  <section class="slide">
+    <span class="eyebrow">Shift + Tab</span>
+    <h1>Choose the level<br>of control.</h1>
+    <p class="lede">Cycle modes with <span class="accent">Shift + Tab</span>. The current mode stays visible in AdaL’s status bar.</p>
+    <div class="mode-grid">
+      <article class="mode"><span class="key">STRICT</span><h2>Ask first.</h2><p>AdaL asks before edits and commands. Use this while learning or reviewing a sensitive project.</p></article>
+      <article class="mode"><span class="key">ACCEPT EDITS</span><h2>Let edits flow.</h2><p>AdaL applies edits; commands still need approval.</p></article>
+      <article class="mode active"><span class="key">YOLO</span><h2>Run the loop.</h2><p>AdaL can plan, build, test, and iterate without stopping for each step.</p></article>
+    </div>
+  </section>
+
+  <section class="slide dark">
+    <span class="eyebrow">Models</span>
+    <h1>Pick the model<br>for the job.</h1>
+    <img class="shot" src="../assets/screenshots/02-model.png" alt="AdaL model picker">
+    <p class="caption">Real AdaL screenshot. The picker explains model strengths; MiniMax M3 is marked for browser use.</p>
+  </section>
+</div>
+<div class="nav"><button id="prev" onclick="changeSlide(-1)" aria-label="Previous slide">←</button><button id="next" onclick="changeSlide(1)" aria-label="Next slide">→</button></div>
+<script>
+  let current=0; const slides=document.querySelectorAll('.slide');
+  function show(n){slides[current].classList.remove('active');current=Math.max(0,Math.min(n,slides.length-1));slides[current].classList.add('active');prev.disabled=current===0;next.disabled=current===slides.length-1;}
+  function changeSlide(d){show(current+d);} document.addEventListener('keydown',e=>{if(e.key==='ArrowRight'||e.key===' ')changeSlide(1);if(e.key==='ArrowLeft')changeSlide(-1);});show(0);
+</script>
+</body>
+</html>

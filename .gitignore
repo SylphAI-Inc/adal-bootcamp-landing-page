@@ -1,0 +1,8 @@
+# macOS
+.DS_Store
+
+# Local editor settings
+.vscode/
+
+# Temporary captures
+*.tmp

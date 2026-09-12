@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Browser Use and Video</title>
+<style>
+  :root { --ink:#101012; --paper:#f7f5f2; --muted:#706e72; --line:#d9d5d0; --pink:#ff5898; --dark:#0d0d0f; --panel:#17171a; }
+  * { box-sizing:border-box; margin:0; }
+  html { font-size:clamp(12px,1.45vw,20px); }
+  body { overflow:hidden; background:var(--paper); color:var(--ink); font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif; }
+  .deck { width:100vw; height:100vh; }.slide { position:absolute; inset:0; display:none; flex-direction:column; justify-content:center; padding:clamp(30px,6vh,72px) clamp(26px,8vw,150px); overflow:hidden; background:var(--dark); color:#fff; }.slide.active{display:flex}.dark{color:#fff;background:var(--dark)}
+  .eyebrow { width:max-content; color:var(--pink); border:1px solid currentColor; border-radius:999px; padding:.34em .78em; font-size:.7em; font-weight:750; letter-spacing:.08em; text-transform:uppercase; margin-bottom:1em; }
+  h1 { max-width:23ch; font-size:clamp(2.1em,5vw,4.3em); font-weight:780; line-height:.98; letter-spacing:-.065em; }.lede { max-width:44em; margin-top:1em; color:var(--muted); font-size:clamp(.95em,1.65vw,1.25em); line-height:1.5; }.dark .lede{color:#a3a0a7}.accent{color:var(--pink)}
+  .shot { width:100%; max-width:70em; max-height:50vh; object-fit:contain; margin-top:1.8em; border:1px solid #303036; border-radius:18px; box-shadow:0 24px 55px rgba(0,0,0,.3); }.tool-shot .shot{margin-top:1.15em}.caption{max-width:70em;margin-top:1em;color:#99969d;font-size:.8em;line-height:1.45}
+  .two-col { display:grid; grid-template-columns:1.05fr .95fr; gap:clamp(2em,5vw,6em); align-items:center; width:100%; max-width:72em; }.checklist{display:grid;gap:.7em;margin-top:1.8em}.item{display:grid;grid-template-columns:2.1em 1fr;gap:.8em;padding:.85em 0;border-top:1px solid var(--line)}.item:last-child{border-bottom:1px solid var(--line)}.dark .item{border-color:#2b2a2f}.num{color:var(--pink);font:700 .75em "SF Mono",Menlo,monospace;padding-top:.25em}.item strong{display:block;font-size:1.04em;letter-spacing:-.015em}.item span{display:block;color:var(--muted);font-size:.88em;line-height:1.45;margin-top:.13em}.dark .item span{color:#a3a0a7}
+  .output { min-height:25em; padding:2em; border:1px solid #34323a; border-radius:18px; background:radial-gradient(circle at 72% 16%,rgba(255,88,152,.22),transparent 31%),var(--panel); display:flex; flex-direction:column; justify-content:center; }.output .label{color:var(--pink);font:700 .72em "SF Mono",Menlo,monospace;letter-spacing:.1em}.output h2{margin-top:.55em;font-size:clamp(1.35em,2.5vw,2.15em);line-height:1.05;letter-spacing:-.045em}.output p{margin-top:1em;color:#aaa7b0;font-size:.9em;line-height:1.55}.output hr{width:100%;border:0;border-top:1px solid #3b3940;margin:1.4em 0}.prompt{margin-top:1.3em;border:1px solid #39363d;border-radius:12px;background:#17171a;padding:1em 1.1em;color:#d8d5db;font:clamp(.73em,1.15vw,.88em)/1.55 "SF Mono",Menlo,monospace}.prompt b{color:var(--pink)}
+  .nav{position:fixed;right:2em;bottom:1.35em;z-index:3;display:flex;gap:.45em}.nav button{width:2.5em;height:2.5em;border:1px solid #3a383f;border-radius:50%;background:#1a191d;color:#fff;cursor:pointer;font-size:1em}.nav button:hover:not(:disabled){border-color:var(--pink);color:var(--pink)}.nav button:disabled{opacity:.25;cursor:default}
+  @media(max-width:700px){.two-col{grid-template-columns:1fr}.slide{justify-content:flex-start;padding-top:12vh;overflow:auto}.shot{max-height:35vh}.output{min-height:unset}}
+</style>
+</head>
+<body>
+<div class="deck">
+  <section class="slide dark active">
+    <span class="eyebrow">What changed</span>
+    <h1>Give AdaL eyes.</h1>
+    <p class="lede">Browser use opens and checks a real web page. Video handles motion that screenshots cannot explain.</p>
+    <img class="shot" src="../assets/screenshots/01-capabilities.png" alt="AdaL capabilities menu showing browser-use and video">
+    <p class="caption">Real AdaL screenshot. Use <span class="accent">/capabilities</span> to see what is available; the agent loads the capability when the task needs it.</p>
+  </section>
+
+  <section class="slide">
+    <span class="eyebrow">What loading looks like</span>
+    <h1>Ask for a real browser.</h1>
+    <p class="lede">When the task needs it, AdaL loads browser-use and shows the capability as a tool card in the conversation.</p>
+    <img class="shot" src="../assets/screenshots/04-load-capability.png" alt="Real AdaL terminal showing the browser-use capability load card">
+    <p class="caption">Real AdaL CLI: the browser-use capability has loaded. Click the card to inspect what it added.</p>
+  </section>
+
+  <section class="slide dark tool-shot">
+    <span class="eyebrow" style="margin-bottom:.65em">Expanded tool card</span>
+    <h1 style="font-size:clamp(1.85em,4.15vw,3.5em)">See the tools<br>before the next step.</h1>
+    <p class="lede" style="margin-top:.65em">Open the card to see what AdaL can use: open a page, inspect it, act on it, and verify the result.</p>
+    <img class="shot" src="../assets/screenshots/05-load-capability-expanded.png" alt="Real AdaL terminal showing expanded browser-use capability tool card">
+    <p class="caption">Real AdaL CLI: expand the load card to see the browser tools and their workflow.</p>
+  </section>
+
+  <section class="slide">
+    <div class="two-col">
+      <div>
+        <span class="eyebrow">Browser use</span>
+        <h1>Check the page<br>that actually rendered.</h1>
+        <p class="lede">Use this for reference research and for checking your build—not for guessing what the browser did.</p>
+        <div class="checklist">
+          <div class="item"><span class="num">01</span><div><strong>Research</strong><span>Open a reference site. Capture its desktop, tablet, and mobile layouts.</span></div></div>
+          <div class="item"><span class="num">02</span><div><strong>Inspect</strong><span>Read colors, fonts, assets, page structure, console errors, and network requests from the live page.</span></div></div>
+          <div class="item"><span class="num">03</span><div><strong>Verify</strong><span>Open the new landing page at the same widths. Compare the actual screen, not a description of it.</span></div></div>
+        </div>
+      </div>
+      <aside class="output">
+        <span class="label">STUDENT EVIDENCE</span>
+        <h2>Three reference screenshots.<br>Three build screenshots.</h2>
+        <hr>
+        <p>At 1440, 768, and 390 px, students can point to what changed and what still needs fixing.</p>
+      </aside>
+    </div>
+  </section>
+
+  <section class="slide dark">
+    <div class="two-col">
+      <div>
+        <span class="eyebrow">Video</span>
+        <h1>Motion is<br>design information.</h1>
+        <p class="lede">A still image cannot show sequence, delay, easing, or how the page feels while it scrolls. Use video to inspect that evidence and to make the finished page easier to share.</p>
+        <div class="checklist">
+          <div class="item"><span class="num">01</span><div><strong>Review motion</strong><span>Record or use a short clip of the reference hero. Inspect the order and timing frame by frame.</span></div></div>
+          <div class="item"><span class="num">02</span><div><strong>Match the build</strong><span>Record the rebuilt hero and compare its motion to the reference before you call it done.</span></div></div>
+          <div class="item"><span class="num">03</span><div><strong>Reuse the result</strong><span>Turn the finished page into a short product clip with voice-over, captions, and a simple composition.</span></div></div>
+        </div>
+      </div>
+      <aside class="output">
+        <span class="label">COPYABLE DEMO PROMPT</span>
+        <div class="prompt"><b>&gt;</b> Record the hero animation on TARGET_URL. Describe the animation sequence, delays, easing, and scroll behavior. Build the same motion for MY_PRODUCT. Then record my version and list the visible differences.</div>
+        <hr>
+        <p>Static checks catch layout. Video checks motion. Together they give the agent evidence it can use to improve the next pass.</p>
+      </aside>
+    </div>
+  </section>
+
+  <section class="slide">
+    <div class="two-col">
+      <div>
+        <span class="eyebrow">Close the loop</span>
+        <h1>Build.<br>Check.<br><span class="accent">Fix.</span></h1>
+        <p class="lede">It becomes useful without constant supervision when it can verify its own output and use that evidence for the next pass.</p>
+        <div class="checklist" style="margin-top:1.15em;gap:0">
+          <div class="item" style="padding:.6em 0"><span class="num">01</span><div><strong>Build</strong><span>Create the page from a prompt, reference, or design spec.</span></div></div>
+          <div class="item" style="padding:.6em 0"><span class="num">02</span><div><strong>Check</strong><span>Open the rendered page. Compare layouts and review motion.</span></div></div>
+          <div class="item" style="padding:.6em 0"><span class="num">03</span><div><strong>Fix</strong><span>Use visible differences and errors to make the next edit.</span></div></div>
+          <div class="item" style="padding:.6em 0"><span class="num">04</span><div><strong>Repeat</strong><span>Stop when the result meets the brief.</span></div></div>
+        </div>
+      </div>
+      <aside class="output">
+        <span class="label">THE AUTO-DEV LOOP</span>
+        <h2>Prompt or reference<br>↓<br>Build<br>↓<br>Browser + video checks<br>↓<br>Fix</h2>
+        <hr>
+        <p><span class="accent">Browser-use</span> checks the page that rendered. <span class="accent">Video</span> checks motion. The results become the next instruction.</p>
+      </aside>
+    </div>
+  </section>
+</div>
+<div class="nav"><button id="prev" onclick="changeSlide(-1)" aria-label="Previous slide">←</button><button id="next" onclick="changeSlide(1)" aria-label="Next slide">→</button></div>
+<script>
+  let current=0;const slides=document.querySelectorAll('.slide');
+  function show(n){slides[current].classList.remove('active');current=Math.max(0,Math.min(n,slides.length-1));slides[current].classList.add('active');prev.disabled=current===0;next.disabled=current===slides.length-1;}
+  function changeSlide(d){show(current+d);}document.addEventListener('keydown',e=>{if(e.key==='ArrowRight'||e.key===' ')changeSlide(1);if(e.key==='ArrowLeft')changeSlide(-1);});show(0);
+</script>
+</body>
+</html>
