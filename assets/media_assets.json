@@ -1,0 +1,20 @@
+{
+  "assets": {
+    "df8411b7": {
+      "id": "df8411b7",
+      "type": "image",
+      "src": "assets/glmflash_logo.png",
+      "duration_s": null,
+      "resolution": null,
+      "provider": "nano-banana-2",
+      "generation": {
+        "prompt": "Minimalist flat vector logo mark: a solid black abstract circular emblem on a pure white background, formed by a thick spiral of connected dots suggesting an evolving neural network, centered, high contrast, no text, no gradients, clean geometric edges, icon style",
+        "model": "nano-banana-2",
+        "n": 1,
+        "google_search_grounding": false
+      },
+      "created_at": "2026-09-12T15:47:37Z",
+      "tags": null
+    }
+  }
+}

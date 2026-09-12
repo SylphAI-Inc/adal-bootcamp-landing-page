@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="A two-slide landing page design-system exercise for AdaL Bootcamp.">
+  <title>Read a Landing Page — AdaL Bootcamp</title>
+  <link rel="stylesheet" href="../shared.css?v=wide-stage-20260911">
+  <style>
+    :root { --base:#050505; --border:rgba(255,255,255,.12); --pink:#ff5898; --lime:#7fee64; --body:rgba(255,255,255,.76); --muted:rgba(255,255,255,.48); }
+    * { box-sizing:border-box; }
+    body { margin:0; overflow-y:auto; background:var(--base); color:#fff; font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif; }
+    .deck { width:100vw; min-height:100vh; }
+    .slide { display:none; position:relative; min-height:100vh; padding:clamp(2rem,5vw,5rem); background:radial-gradient(circle at 78% 18%,rgba(255,88,152,.12),transparent 28rem),var(--base); }
+    .slide.active { display:flex; flex-direction:column; }
+    .top { display:flex; justify-content:space-between; align-items:center; }.brand img { width:100px; height:auto; }.slide-number { color:var(--muted); font:500 .74rem "SF Mono",Menlo,monospace; }
+    .content { width:min(100%, 2100px); margin:auto; }.split { display:grid; grid-template-columns:minmax(0,1fr) minmax(26rem,1fr); gap:clamp(3rem,7vw,10rem); align-items:center; }
+    .eyebrow { margin:0; color:var(--pink); font:600 .72rem/1 "SF Mono",Menlo,monospace; letter-spacing:.1em; text-transform:uppercase; }
+    h1 { max-width:11ch; margin:.8rem 0 0; font-size:clamp(2.8rem,4.6vw,5.5rem); font-weight:400; letter-spacing:-.075em; line-height:.91; } h1 strong { font-weight:650; }
+    .lede { max-width:38rem; margin:1.25rem 0 0; color:var(--body); font-size:clamp(1rem,1.15vw,1.22rem); line-height:1.55; }
+    .reference-shot { width:100%; max-height:65vh; object-fit:contain; border:1px solid var(--border); border-radius:1.35rem; box-shadow:0 22px 52px rgba(0,0,0,.34); }
+    .link-card,.panel { max-width:42rem; padding:clamp(1.3rem,2.7vw,2.5rem); border:1px solid var(--border); border-radius:1.45rem; background:rgba(255,255,255,.03); }.link-card h2,.panel h2 { margin:.75rem 0 0; font-size:clamp(1.45rem,2.1vw,2.35rem); letter-spacing:-.055em; line-height:1; }.link-card p,.panel p { margin:.8rem 0 0; color:var(--body); line-height:1.52; }
+    .link-card a { display:inline-flex; margin-top:1.15rem; color:var(--lime); font:600 clamp(.75rem,1.1vw,.94rem)/1.4 "SF Mono",Menlo,monospace; overflow-wrap:anywhere; text-decoration-color:rgba(127,238,100,.6); text-underline-offset:.25em; }
+    .facts { display:grid; grid-template-columns:repeat(2,1fr); gap:.75rem; margin-top:1.45rem; }.fact { padding:.95rem; border:1px solid var(--border); border-radius:1rem; background:rgba(255,255,255,.025); }.fact b { display:block; color:var(--pink); font:600 .68rem "SF Mono",Menlo,monospace; letter-spacing:.08em; }.fact span { display:block; margin-top:.45rem; color:var(--body); font-size:.88rem; line-height:1.4; }
+    .prompt { margin-top:1.25rem; padding:1rem 1.1rem; border:1px solid rgba(255,88,152,.42); border-radius:1rem; background:rgba(255,88,152,.065); color:#eee; font:clamp(.72rem,1.1vw,.88rem)/1.55 "SF Mono",Menlo,monospace; }.prompt b { color:var(--pink); }
+    .nav { position:fixed; right:2rem; bottom:1.5rem; display:flex; gap:.5rem; }.nav button { width:2.6rem; height:2.6rem; border:1px solid var(--border); border-radius:50%; background:#101014; color:#fff; font-size:1rem; cursor:pointer; }.nav button:disabled { opacity:.25; }.nav button:hover:not(:disabled) { border-color:var(--pink); color:var(--pink); }
+    @media (min-width:2000px) { .slide { padding-inline:clamp(5rem,8vw,13rem); }.content { width:min(100%, 2500px); }.split { grid-template-columns:minmax(0,1.1fr) minmax(33rem,.9fr); gap:clamp(4rem,8vw,14rem); }.reference-shot { max-height:69vh; }.link-card,.panel { max-width:48rem; }.link-card h1 { font-size:clamp(3.5rem,4.25vw,6.5rem); }.lede { max-width:34rem; font-size:clamp(1.05rem,1.05vw,1.35rem); } }
+    @media(max-width:760px) { body { overflow:auto; }.slide { min-height:100vh; overflow:auto; padding:1.35rem 1.25rem 5rem; }.content { margin:3rem auto; }.split { grid-template-columns:1fr; }.reference-shot { max-height:38vh; }.nav { right:1rem; bottom:1rem; }.slide-number { display:none; } }
+  </style>
+</head>
+<body>
+  <div class="deck">
+    <section class="slide active">
+      <div class="top"><a class="brand" href="../index.html"><img src="../assets/adal-logo-horizontal.svg" alt="AdaL"></a><span class="slide-number">01 / 02</span></div>
+      <main class="content split">
+        <figure><img class="reference-shot" src="../assets/refero/modal-design-reference.jpg" alt="Refero Styles Modal example showing a live landing page beside an AI-readable design reference"></figure>
+        <aside class="link-card"><p class="eyebrow">Start here</p><h1>A landing page is a <strong>system.</strong></h1><p class="lede">This Refero example explains the visual decisions behind a real landing page: not only what it looks like, but how its type, color, space, and components work together.</p><a href="https://styles.refero.design/style/68c15685-5db9-4869-b71d-27240568c9d8" target="_blank" rel="noopener">Open the Modal DESIGN.md reference ↗</a></aside>
+      </main>
+    </section>
+
+    <section class="slide">
+      <div class="top"><a class="brand" href="../index.html"><img src="../assets/adal-logo-horizontal.svg" alt="AdaL"></a><span class="slide-number">02 / 02</span></div>
+      <main class="content split">
+        <div><p class="eyebrow">Apply it to your landing page</p><h1>One page.<br><strong>Clear rules.</strong></h1><p class="lede">Before building, define the visual decisions that make one landing page feel intentional: what leads, what repeats, and what action it asks for.</p><div class="prompt"><b>&gt;</b> Study the Modal Refero DESIGN.md as design direction only. Create a landing-page brief for MY_PRODUCT: visual hierarchy, color and type tokens, reusable components, supporting proof, and one primary CTA. Do not build yet.</div></div>
+        <aside class="panel"><p class="eyebrow">Your design brief</p><h2>Turn visual taste into reusable code.</h2><div class="facts"><div class="fact"><b>HIERARCHY</b><span>What gets attention first?</span></div><div class="fact"><b>TOKENS</b><span>Named color, type, spacing, and border rules.</span></div><div class="fact"><b>COMPONENTS</b><span>Reusable navigation, cards, and CTA patterns.</span></div><div class="fact"><b>CONVERSION</b><span>What should the visitor do?</span></div></div><p>Tokens prevent one-off styling. Components reuse those rules across the page. Give AdaL the system first, then build and verify.</p></aside>
+      </main>
+    </section>
+  </div>
+  <div class="nav"><button id="prev" aria-label="Previous slide">←</button><button id="next" aria-label="Next slide">→</button></div>
+  <script>
+    let current = 0;
+    const slides = document.querySelectorAll('.slide');
+    const previous = document.getElementById('prev');
+    const next = document.getElementById('next');
+    function show(index) { slides[current].classList.remove('active'); current = Math.max(0, Math.min(index, slides.length - 1)); slides[current].classList.add('active'); previous.disabled = current === 0; next.disabled = current === slides.length - 1; }
+    previous.addEventListener('click', () => show(current - 1));
+    next.addEventListener('click', () => show(current + 1));
+    document.addEventListener('keydown', (event) => { if (event.key === 'ArrowRight' || event.key === ' ') show(current + 1); if (event.key === 'ArrowLeft') show(current - 1); });
+    show(0);
+  </script>
+</body>
+</html>

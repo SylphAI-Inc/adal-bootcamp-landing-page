@@ -29,9 +29,12 @@ The class spine: **two ways to create a landing page**
    by frame. Out-of-box: browser-use + video capabilities, the
    `browser-automation` skill, and Engineer's builder≠evaluator worker pair.
    Battle-tested: hyperspell.com, xtract.framer.ai (~10 min heroes).
-2. **Find an AI-native landing page prompt — such as motionsites.ai.** The
-   reference is the prompt itself (built for Lovable/Bolt/Cursor/v0 — and
-   AdaL). Also: 21st.dev copy-prompt, Aceternity, Magic UI, stork.ai free stack.
+2. **Start from a real product design brief — Refero Styles is the default.**
+   Its public `DESIGN.md` references capture the palette, typography, spacing,
+   components, and rules of modern products, so students can hand AdaL a
+   concrete system instead of a vague visual description. 21st.dev prompts,
+   Aceternity, Magic UI, and MotionSites remain optional sources for component
+   ideas and visual direction.
 
 **How to do it without paying** (both ways): (1) watch the free animated
 preview on a paid prompt site → ask AdaL to reverse-engineer it; (2) copy a
@@ -43,7 +46,7 @@ the references page (design-spec extraction, preview clone, full-page build).
 ### 0. Setup (~5 min) — install only
 - Reuse the bootcamp-2 setup deck content: one-command install
   (`curl -fsSL https://adal.sylph.ai/install.sh | bash`), launch, browser sign-in.
-- Three things to know: `/init`, `/model`, `/capabilities`. That's the whole manual.
+- Two things to know: `/model` and `Shift+Tab`. Browser use turns on automatically when needed.
 - **Shortcut: `Shift+Tab`** cycles permission modes — strict → accept edits → yolo. Footer shows the current mode. Teach yolo as the landing-page shipping mode.
 - Slides: `slides/01-setup.html` ✅ DONE (real screenshots via tuistory).
 
@@ -52,12 +55,12 @@ Every part answers four practical questions: **what do I give AdaL, what does it
 
 ### 1. Set up AdaL (~5 min)
 - Install and sign in.
-- Use `/model`, `/capabilities`, and `Shift+Tab` (strict → accept edits → yolo).
+- Use `/model` and `Shift+Tab` (strict → accept edits → yolo). Browser use turns on automatically when needed.
 - **Student outcome:** AdaL running inside an empty project folder.
 
 ### 2. Choose the starting point (~5 min)
 - **Clone:** start from a live page, Framer site, or free animated preview.
-- **Available prompt:** start from a prompt supplied by MotionSites, 21st.dev, Magic UI, or a similar library.
+- **Design brief:** start from a Refero Styles `DESIGN.md`, an AI-ready 21st.dev prompt, or a component library such as Magic UI.
 - **Student outcome:** one URL or one copyable prompt to use in the live build.
 
 ### 3. Demo — clone a reference (~12 min)
@@ -67,17 +70,28 @@ Every part answers four practical questions: **what do I give AdaL, what does it
 - **Proof:** compare target and rebuild at the same viewport; fix visible differences.
 - **Resources:** Hyperspell and Xtract Framer from bootcamp-2; the clone guide remains the deeper reference.
 
-### 4. Demo — use an available prompt (~10 min)
-- **Input:** a prompt copied from an AI-native library, such as MotionSites, or a free component prompt from 21st.dev/Magic UI.
-- **AdaL does:** replaces product, copy, palette, assets, and responsive constraints; builds the result.
-- **Output:** an original page based on the prompt's design direction.
-- **Proof:** inspect the running page at desktop and mobile; check that it represents the student's product rather than the source example.
-- **No-pay route:** use the free animated preview as a clone reference, or a free copyable prompt as direct input.
+### 4. Demo — DESIGN.md → Tailwind (~10 min)
+- **Input:** a structured `DESIGN.md` from Refero Styles or the class-provided Atlas Runtime brief.
+- **AdaL does:** reads named color, type, spacing, component, and layout rules before building an original Tailwind landing page.
+- **Output:** `demos/design-system-tailwind/app/` — an original Atlas Runtime hero, plus a reusable `DESIGN.md` and student prompt.
+- **Proof:** inspect the running page at desktop and mobile; verify that it follows the brief while using original product copy and visuals.
+- **Student workflow:** `DESIGN.md` → copy the student prompt → Tailwind build → browser QA.
 
 ### 5. Research resources (~5 min)
-- Open `slides/04-resources.html`; every resource opens in its own tab.
-- Choose a resource by need: prompts (MotionSites / 21st.dev), page structure (Lapa / One Page Love), interaction ideas (Awwwards / Godly), or product flows (Pageflows / Mobbin).
-- **Student outcome:** a shortlist of references, not an unbounded mood board.
+- Open `slides/04-resources.html`; it separates the modern options into two
+  student decisions: **AI-native, free-first** sources and **rendered pages,
+  templates & clone targets**.
+- **AI-native, free-first:** Refero Styles is the default for a full
+  `DESIGN.md` brief; 21st.dev offers AI-ready prompts plus components; React
+  Bits, Magic UI, and Aceternity offer live-previewed code/effects.
+- **Rendered pages and templates:** Framer Marketplace’s free templates are
+  the default clone source. shadcnblocks and Cruip provide previewed layouts
+  plus implementation material.
+- Every card with **Live preview · cloneable** means students can give AdaL
+  that URL for screenshots, DOM inspection, a design spec, and an original
+  rebuild.
+- **Student outcome:** one bounded starting point with a known access path:
+  copy `DESIGN.md`, copy prompt/code, or inspect a live template.
 
 ### 6. Build and verify (~15 min)
 - Start in yolo after the brief is clear.
@@ -114,7 +128,7 @@ Every part answers four practical questions: **what do I give AdaL, what does it
 ## Repo layout (this directory) — everything HTML
 ```
 docs/    class_plan.md (this)
-slides/  01-setup.html · 02-capabilities.html · 03-two-ways.html · 04-skills-setup.html · 04-resources.html
+slides/  01-setup.html · 03-two-ways.html · 04-skills-setup.html · 04-resources.html · 05-read-a-landing-page.html
 demos/   demo scripts as HTML pages (prompt + steps + fallback recording links)
 assets/  adal logos ✅, screenshots/ (real CLI captures ✅)
 ```

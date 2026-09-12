@@ -3,47 +3,38 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Landing Page Design with AdaL — class materials">
-  <title>Landing Page Design with AdaL</title>
-  <style>
-    :root { --void:#030303; --base:#050505; --surface:#0a0a0a; --elevated:#101010; --border:rgba(255,255,255,.1); --border-strong:rgba(255,255,255,.3); --pink:#ff5898; --green:#9be564; --text:#fff; --body:rgba(255,255,255,.82); --secondary:rgba(255,255,255,.7); --muted:rgba(255,255,255,.5); }
-    * { box-sizing:border-box; }
-    body { min-height:100vh; margin:0; background:radial-gradient(circle at 72% 6%,rgba(255,88,152,.12),transparent 28rem),var(--base); color:var(--text); font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif; }
-    .shell { width:var(--page-width,calc(100% - clamp(2rem,5vw,6rem))); max-width:1180px; margin:auto; }
-    nav { display:flex; align-items:center; justify-content:space-between; padding:1.6rem 0; border-bottom:1px solid var(--border); }
-    .brand { display:inline-flex; align-items:center; text-decoration:none; }.brand img { width:104px; height:auto; }
-    header { padding:clamp(4rem,10vw,9rem) 0 clamp(3rem,7vw,6rem); }
-    .eyebrow { color:var(--pink); font:600 .74rem/1 "SF Mono",Menlo,monospace; letter-spacing:.1em; text-transform:uppercase; }
-    h1 { max-width:14ch; margin:.8rem 0 0; font-size:clamp(3rem,7vw,6.4rem); font-weight:400; letter-spacing:-.065em; line-height:.93; }
-    h1 strong { font-weight:650; }.intro { max-width:40rem; margin:1.6rem 0 0; color:var(--secondary); font-size:clamp(1.05rem,2vw,1.35rem); line-height:1.55; }
-    .cta { display:inline-flex; align-items:center; gap:.6rem; margin-top:2rem; padding:.8rem 1.05rem; border:1px solid var(--border-strong); border-radius:999px; color:var(--text); background:rgba(255,255,255,.05); text-decoration:none; font-size:.93rem; transition:.18s ease; }.cta:hover { border-color:var(--pink); background:rgba(255,88,152,.12); transform:translateY(-2px); }
-    main { padding:1rem 0 6rem; } h2 { margin:0; font-size:clamp(1.8rem,3vw,2.8rem); font-weight:400; letter-spacing:-.05em; }.deck-copy { margin:.65rem 0 2rem; color:var(--muted); }
-    .grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:1rem; }.card { min-height:18rem; display:flex; flex-direction:column; padding:1.7rem; border:1px solid var(--border); border-radius:1.5rem; background:linear-gradient(145deg,rgba(255,255,255,.055),rgba(255,255,255,.018)); color:inherit; text-decoration:none; transition:.18s ease; }.card:hover { transform:translateY(-4px); border-color:rgba(255,88,152,.7); background:linear-gradient(145deg,rgba(255,88,152,.11),rgba(255,255,255,.035)); }.label { color:var(--pink); font:600 .72rem/1 "SF Mono",Menlo,monospace; letter-spacing:.1em; }.card h3 { max-width:15ch; margin:1.05rem 0 .65rem; font-size:clamp(1.5rem,2.4vw,2.1rem); font-weight:450; line-height:1; letter-spacing:-.05em; }.card p { max-width:31rem; margin:0; color:var(--secondary); line-height:1.55; }.open { margin-top:auto; padding-top:1.5rem; color:var(--pink); font-size:.9rem; }
-    .support { display:flex; align-items:center; justify-content:space-between; gap:2rem; margin-top:3rem; padding:1.5rem 1.7rem; border:1px solid var(--border); border-radius:1.5rem; background:var(--surface); }.support p { margin:.5rem 0 0; color:var(--secondary); line-height:1.5; }.support a { color:var(--pink); white-space:nowrap; text-decoration:none; }
-    @media (max-width:680px) { .grid { grid-template-columns:1fr; }.card { min-height:15.5rem; }.support { display:block; }.support a { display:inline-block; margin-top:1rem; } nav { padding:1.15rem 0; } }
-  </style>
+  <meta name="description" content="AdaL Bootcamp is a practical class for designing, checking, and shipping AI-assisted landing pages.">
+  <title>AdaL Bootcamp — Landing Page Design</title>
+  <link rel="stylesheet" href="landing.css">
+  <script src="landing.js" defer></script>
 </head>
 <body>
-  <div class="shell">
-    <nav><a class="brand" href="index.html" aria-label="AdaL class home"><img src="assets/adal-logo-horizontal.svg" alt="AdaL"></a></nav>
-    <header>
-      <p class="eyebrow">Free class materials</p>
-      <h1>Landing page design <strong>with AdaL.</strong></h1>
-      <p class="intro">Start from a page you like or a prompt you can copy. Use the browser and video checks to improve what you build.</p>
-      <a class="cta" href="slides/01-setup.html" target="_blank" rel="noopener">Open the class →</a>
+  <main class="landing-shell" id="top">
+    <div class="backdrop" aria-hidden="true">
+      <div class="backdrop__glow backdrop__glow--pink"></div>
+      <div class="backdrop__glow backdrop__glow--green"></div>
+      <div class="backdrop__grid"></div>
+    </div>
+
+    <header class="site-header">
+      <a class="brand" href="#top" aria-label="AdaL Bootcamp home">
+        <span class="brand__mark"><img src="assets/adal-logo.svg" alt=""></span>
+        <span>AdaL <strong>Bootcamp</strong></span>
+      </a>
+
+
     </header>
-    <main>
-      <h2>Class materials.</h2>
-      <p class="deck-copy">Open a class page to get started.</p>
-      <div class="grid">
-        <a class="card" href="slides/01-setup.html" target="_blank" rel="noopener"><span class="label">01 / SETUP</span><h3>Set up AdaL</h3><p>Join Discord, install on your operating system, and choose a working mode.</p><span class="open">Open deck →</span></a>
-        <a class="card" href="slides/02-capabilities.html" target="_blank" rel="noopener"><span class="label">02 / CAPABILITIES</span><h3>Browser and video checks</h3><p>Load a capability, inspect real tools, then close the build–check–fix loop.</p><span class="open">Open deck →</span></a>
-        <a class="card" href="slides/03-two-ways.html" target="_blank" rel="noopener"><span class="label">03 / STARTING POINT</span><h3>Clone or use a prompt</h3><p>Start from an existing site, a free preview, or an available AI-native prompt.</p><span class="open">Open deck →</span></a>
-        <a class="card" href="slides/04-skills-setup.html" target="_blank" rel="noopener"><span class="label">04 / SKILLS SETUP</span><h3>Clone Any Website</h3><p>Load the clone-anywebsite skill, give AdaL a target, and verify the result.</p><span class="open">Open deck →</span></a>
-        <a class="card" href="slides/04-resources.html" target="_blank" rel="noopener"><span class="label">05 / RESOURCES</span><h3>Reference sites and prompts</h3><p>Open reference libraries and copy a prompt directly into AdaL.</p><span class="open">Open resources →</span></a>
+
+    <section class="class-picker" id="class-sections">
+      <div class="section-list reveal" style="--delay: 240ms">
+        <a class="section-card" target="_blank" rel="noopener" href="slides/01-setup.html"><span class="section-number">01</span><span><strong>Set up AdaL</strong><small>Setup, capabilities, and the build–check–fix loop.</small></span><span class="section-arrow">→</span></a>
+        <a class="section-card" target="_blank" rel="noopener" href="slides/03-two-ways.html"><span class="section-number">02</span><span><strong>Start with a page</strong><small>Find a starting system, then pass AdaL the style you want.</small></span><span class="section-arrow">→</span></a>
+        <a class="section-card" target="_blank" rel="noopener" href="slides/04-skills-setup.html"><span class="section-number">03</span><span><strong>Set up skills</strong><small>Browse skills on atskills.one and load Clone Any Website.</small></span><span class="section-arrow">→</span></a>
+        <a class="section-card" target="_blank" rel="noopener" href="slides/04-resources.html"><span class="section-number">04</span><span><strong>Browse resources</strong><small>Landing-page references and reusable prompts.</small></span><span class="section-arrow">→</span></a>
+        <a class="section-card" target="_blank" rel="noopener" href="slides/05-read-a-landing-page.html"><span class="section-number">05</span><span><strong>Read a landing page</strong><small>Turn visual observations into a practical design brief.</small></span><span class="section-arrow">→</span></a>
       </div>
-      <section class="support"><div><span class="label">QUESTIONS DURING CLASS</span><p>Ask in Discord. Share the page, prompt, or screenshot you are working with.</p></div><a href="https://discord.gg/adalagent" target="_blank" rel="noopener">discord.gg/adalagent ↗</a></section>
-    </main>
-  </div>
+
+    </section>
+  </main>
 </body>
 </html>

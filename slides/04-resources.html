@@ -1,133 +1,131 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Where to Find Landing-Page References</title>
-<style>
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  html { font-size: clamp(13px, 1.2vw, 19px); scroll-behavior: smooth; }
-  body { font-family: -apple-system, 'Segoe UI', system-ui, sans-serif; background: #0a0a0a; color: #fff; }
-  .wrap { max-width: 72em; margin: 0 auto; padding: clamp(32px, 6vh, 72px) clamp(20px, 5vw, 56px) 8em; }
-  .tag { display: inline-block; font-size: 0.75em; font-weight: 600; color: #FF5898; border: 1px solid #FF5898; border-radius: 99px; padding: 0.35em 1em; margin-bottom: 1em; text-transform: uppercase; letter-spacing: 0.05em; }
-  h1 { font-size: clamp(2em, 5vw, 3em); font-weight: 800; letter-spacing: -0.02em; margin-bottom: 0.3em; }
-  .subtitle { color: #888; font-size: 1.1em; margin-bottom: 2.2em; }
-  h2 { font-size: 1.25em; font-weight: 700; color: #FF5898; margin: 2.2em 0 0.9em; display: flex; align-items: center; gap: 0.5em; }
-  h2 .why { font-size: 0.72em; font-weight: 400; color: #777; letter-spacing: 0.02em; }
-  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(20em, 1fr)); gap: 1em; }
-  a.site { position: relative; display: block; border: 1px solid #262626; border-radius: 12px; padding: 1.1em 1.2em; background: #111; text-decoration: none; color: inherit; transition: border-color .15s, transform .15s; }
-  a.site:hover { border-color: #FF5898; transform: translateY(-2px); }
-  a.site::after { content: '↗'; position: absolute; top: 0.9em; right: 1.1em; color: #FF5898; font-size: 1.1em; opacity: 0; transition: opacity .15s; }
-  a.site:hover::after { opacity: 1; }
-  .site .name { color: #fff; font-weight: 700; font-size: 1.02em; }
-  a.site:hover .name { color: #FF5898; }
-  .site .url { display: block; color: #555; font-size: 0.78em; font-family: 'SF Mono', Menlo, monospace; margin: 0.15em 0 0.5em; }
-  .site p { color: #999; font-size: 0.85em; line-height: 1.55; margin: 0; }
-  .site .star { color: #FF5898; font-size: 0.8em; font-weight: 600; }
-  .terminal { background: #0d0d0d; border: 1px solid #222; border-radius: 12px; padding: clamp(16px, 3vw, 26px); margin-top: 1em; font-family: 'SF Mono', 'Fira Code', Menlo, monospace; }
-  .terminal .prompt { color: #FF5898; }
-  .terminal .cmd { color: #fff; }
-  .terminal .comment { color: #555; }
-  .terminal .line { margin-bottom: 0.45em; font-size: 0.92em; line-height: 1.6; }
-  .promptbox { border: 1px solid #2a2a2a; border-radius: 12px; background: #0d0d0d; margin-bottom: 1em; overflow: hidden; }
-  .phead { display: flex; justify-content: space-between; align-items: center; gap: 1em; padding: 0.8em 1.1em; border-bottom: 1px solid #1f1f1f; }
-  .pname { color: #FF5898; font-weight: 700; font-size: 0.9em; }
-  .copy { background: #FF5898; color: #fff; border: none; border-radius: 8px; padding: 0.4em 1.1em; font-size: 0.8em; font-weight: 700; cursor: pointer; flex-shrink: 0; }
-  .copy:hover { filter: brightness(1.1); }
-  .copy.done { background: #16a34a; }
-  .promptbox pre { padding: 1em 1.1em; color: #bbb; font-family: 'SF Mono', 'Fira Code', Menlo, monospace; font-size: 0.8em; line-height: 1.65; white-space: pre-wrap; word-break: break-word; margin: 0; }
-  .back { position: fixed; bottom: 1.2em; right: 1.5em; color: #FF5898; text-decoration: none; font-size: 0.85em; border: 1px solid #33232a; background: #16090e; padding: 0.5em 1em; border-radius: 8px; }
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Modern, free-first design resources for the AdaL landing page class.">
+  <title>Landing Page Resource Library</title>
+  <style>
+    :root { --ink: #101014; --panel: #1a1a20; --line: #30303a; --muted: #a7a6b1; --pink: #ff5898; --blue: #6795ff; --green: #8fe272; --cream: #faf8f2; }
+    * { box-sizing: border-box; }
+    html { font-size: clamp(14px, 1.1vw, 18px); scroll-behavior: smooth; }
+    body { margin: 0; background: var(--ink); color: #fff; font-family: Inter, ui-sans-serif, system-ui, sans-serif; }
+    a { color: inherit; }
+    .wrap { width: min(1280px, 100%); margin: 0 auto; padding: clamp(34px, 6vw, 86px) clamp(20px, 5vw, 64px) 8rem; }
+    .eyebrow { display: inline-flex; gap: .55rem; align-items: center; padding: .42rem .72rem; border: 1px solid rgba(255,88,152,.55); border-radius: 999px; color: var(--pink); font-size: .72rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
+    h1 { max-width: 14ch; margin: .75rem 0 .4rem; font-size: clamp(2.5rem, 6vw, 5rem); line-height: .93; letter-spacing: -.075em; }
+    .intro { max-width: 62ch; margin: 0; color: var(--muted); font-size: 1.08rem; line-height: 1.55; }
+    .legend { display: flex; flex-wrap: wrap; gap: .55rem; margin-top: 1.5rem; }
+    .chip { display: inline-flex; align-items: center; min-height: 28px; padding: .32rem .6rem; border: 1px solid var(--line); border-radius: 999px; color: #d9d8e1; font-size: .7rem; font-weight: 700; letter-spacing: .03em; text-transform: uppercase; }
+    .chip--free { color: var(--green); border-color: rgba(143,226,114,.45); background: rgba(143,226,114,.08); }
+    .chip--clone { color: #bdd0ff; border-color: rgba(103,149,255,.48); background: rgba(103,149,255,.1); }
+    section { margin-top: clamp(3.6rem, 7vw, 6rem); }
+    .section-heading { display: grid; grid-template-columns: auto 1fr; align-items: end; gap: 1rem; margin-bottom: 1.3rem; }
+    .section-number { color: var(--pink); font: 500 .86rem/1 ui-monospace, SFMono-Regular, Menlo, monospace; }
+    h2 { margin: 0; font-size: clamp(1.55rem, 3vw, 2.45rem); line-height: 1; letter-spacing: -.055em; }
+    .section-note { grid-column: 2; max-width: 64ch; margin: -.45rem 0 0; color: var(--muted); font-size: .94rem; line-height: 1.45; }
+    .grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; }
+    .card { display: flex; flex-direction: column; min-height: 100%; overflow: hidden; border: 1px solid var(--line); border-radius: 18px; background: var(--panel); text-decoration: none; transition: border-color .2s ease, transform .2s ease, box-shadow .2s ease; }
+    .card:hover { border-color: rgba(255,88,152,.7); transform: translateY(-4px); box-shadow: 0 15px 45px rgba(0,0,0,.26); }
+    .featured { display:grid; grid-template-columns: minmax(0,1.25fr) minmax(18rem,.75fr); overflow:hidden; border:1px solid rgba(255,88,152,.55); border-radius:22px; background:linear-gradient(120deg,rgba(255,88,152,.14),rgba(255,255,255,.025)); text-decoration:none; transition:transform .2s ease,border-color .2s ease; }
+    .featured:hover { transform:translateY(-4px); border-color:var(--pink); }.featured-preview { position:relative; min-height:250px; overflow:hidden; background:radial-gradient(circle at 24% 70%,#d6ff52 0 7%,transparent 8%),radial-gradient(circle at 25% 70%,rgba(170,239,56,.35),transparent 28%),linear-gradient(135deg,#071009,#020303 70%); }.featured-preview::before { position:absolute; inset:18px; border:1px solid rgba(143,226,114,.25); border-radius:13px; content:""; }.featured-preview::after { position:absolute; top:40px; left:12%; width:46%; height:26%; border:1px solid rgba(143,226,114,.3); border-radius:10px; background:linear-gradient(135deg,rgba(255,255,255,.1),transparent); box-shadow:80px 72px 0 -1px rgba(143,226,114,.12); content:""; }.featured-terminal { position:absolute; z-index:1; left:10%; top:30px; color:#caff97; font:600 clamp(15px,1.8vw,23px)/.95 ui-monospace,monospace; letter-spacing:-.055em; }.featured-copy { display:flex; flex-direction:column; justify-content:center; padding:clamp(1.4rem,3vw,2.5rem); }.featured-copy h3 { margin:.7rem 0 0; font-size:clamp(1.7rem,3vw,3rem); line-height:.96; letter-spacing:-.065em; }.featured-copy p { max-width:40ch; margin:.8rem 0 0; color:var(--muted); line-height:1.5; }.featured-action { margin-top:1.2rem; color:#fff; font-weight:700; }.featured-action span { color:var(--pink); }
+    .preview { position: relative; min-height: 164px; overflow: hidden; border-bottom: 1px solid var(--line); background: #252530; }
+    .preview__bar { position: absolute; top: 13px; left: 13px; right: 13px; display: flex; gap: 5px; align-items: center; z-index: 1; }
+    .preview__bar i { display: block; width: 6px; height: 6px; border-radius: 50%; background: rgba(255,255,255,.55); }
+    .preview__screen { position: absolute; inset: 0; }
+    .preview--refero { background: var(--cream); color: #181818; }
+    .preview--refero .preview__bar i { background: #111; opacity: .45; }
+    .preview--refero .type { position: absolute; top: 45px; left: 16%; right: 16%; font-family: Georgia, serif; font-size: clamp(21px, 2.5vw, 35px); line-height: .9; text-align: center; letter-spacing: -.08em; }
+    .preview--refero .search { position: absolute; top: 107px; left: 20%; right: 20%; height: 23px; border: 1px solid #d9d7d1; border-radius: 7px; }
+    .preview--21st { background: radial-gradient(circle at 55% 85%, #2854a3 0, #10234b 31%, #0a0d16 75%); }
+    .preview--21st .type { position: absolute; top: 44px; left: 17px; max-width: 11ch; font-size: 24px; font-weight: 600; line-height: .95; letter-spacing: -.08em; }
+    .preview--21st .orb { position: absolute; right: 17%; bottom: 11%; width: 72px; height: 72px; border: 1px solid rgba(255,255,255,.7); border-radius: 50%; box-shadow: 0 0 32px #6a94ff; }
+    .preview--bits { background: #110f18; }
+    .preview--bits .wave { position: absolute; inset: -25% -15%; background: radial-gradient(ellipse at center, transparent 23%, rgba(131,65,251,.55) 25%, transparent 30%, rgba(41,128,255,.48) 41%, transparent 46%, rgba(255,105,180,.34) 52%, transparent 58%); filter: blur(2px); transform: rotate(-13deg); }
+    .preview--bits .code { position: absolute; top: 43px; right: 16px; width: 43%; color: rgba(255,255,255,.66); font: 9px/1.65 ui-monospace, monospace; }
+    .preview--magic { background: linear-gradient(135deg, #f8f8f4, #fff); color: #111; }
+    .preview--magic .rainbow { position: absolute; left: 22%; right: 22%; bottom: 28px; height: 20px; filter: blur(12px); background: linear-gradient(90deg, #fe76ce, #fede73, #65e9e9, #8c7bff); }
+    .preview--magic .type { position: absolute; top: 45px; left: 17%; right: 17%; font-size: 22px; font-weight: 700; line-height: .95; text-align: center; letter-spacing: -.08em; }
+    .preview--aceternity { background: linear-gradient(120deg, #fff 0 45%, #e9eef9 45% 100%); color: #19191c; }
+    .preview--aceternity .type { position: absolute; top: 48px; left: 15px; max-width: 12ch; font-size: 21px; font-weight: 700; line-height: .94; letter-spacing: -.075em; }
+    .preview--aceternity .windows { position: absolute; right: 8%; top: 31px; width: 39%; height: 104px; border: 1px solid #ced4e2; border-radius: 9px; background: repeating-linear-gradient(0deg, transparent, transparent 14px, #dae1ed 15px), #fff; transform: rotate(3deg); }
+    .preview--framer { background: #121214; }
+    .preview--framer .gallery { position: absolute; inset: 37px 14px 15px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
+    .preview--framer .tile { border-radius: 7px; background: linear-gradient(140deg, #f2dfbb, #ab765d); }
+    .preview--framer .tile:nth-child(2) { background: linear-gradient(145deg, #fafafa, #bac1c8); }.preview--framer .tile:nth-child(3) { background: linear-gradient(145deg, #2b6af6, #141725); }.preview--framer .tile:nth-child(4) { background: linear-gradient(145deg, #edf1ed, #d88859); }
+    .preview--shadcn { background: #fcfcfb; color: #111; }
+    .preview--shadcn .wire { position: absolute; inset: 41px 14px 15px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+    .preview--shadcn .wire span { border: 1px solid #e0e0df; background: linear-gradient(#fff 7px, transparent 7px 17px, #e8e8e6 17px 20px, transparent 20px 28px, #dededc 28px 31px, transparent 31px), #fafaf9; }
+    .preview--cruip { background: radial-gradient(circle at 70% 20%, #2e6ec9, transparent 29%), #071323; }
+    .preview--cruip .screen { position: absolute; top: 48px; left: 16px; right: 16px; bottom: 17px; border: 1px solid rgba(255,255,255,.3); border-radius: 8px; background: linear-gradient(135deg, rgba(255,255,255,.11), rgba(255,255,255,.025)); }
+    .preview--cruip .screen::after { position: absolute; top: 20px; left: 13%; width: 52%; height: 6px; background: rgba(255,255,255,.8); content: ""; box-shadow: 0 16px 0 rgba(255,255,255,.3), 0 32px 0 rgba(255,255,255,.2); }
+    .preview--spline { background: radial-gradient(circle at 50% 105%, #1c2768 0, #080913 43%, #050507 70%); }
+    .spline-grid { position: absolute; left: -20%; right: -20%; bottom: -32px; height: 108px; background: linear-gradient(rgba(111,107,255,.35) 1px, transparent 1px), linear-gradient(90deg, rgba(111,107,255,.35) 1px, transparent 1px); background-size: 20px 16px; transform: perspective(130px) rotateX(57deg); }
+    .spline-shape { position: absolute; display: block; border-radius: 30% 55% 45% 60%; box-shadow: inset 8px 10px 16px rgba(255,255,255,.23), 0 11px 25px rgba(0,0,0,.4); }
+    .spline-shape--one { width: 55px; height: 69px; top: 37px; left: 23%; background: linear-gradient(135deg, #b542a2, #3c145b); transform: rotate(-20deg); }.spline-shape--two { width: 53px; height: 46px; right: 22%; top: 44px; background: linear-gradient(135deg, #ffcc2d, #aa5c00); transform: rotate(27deg); }.spline-shape--three { width: 78px; height: 61px; bottom: 18px; left: 40%; background: linear-gradient(135deg, #4a63ff, #171644); transform: rotate(18deg); }
+    .spline-title { position: absolute; z-index: 1; top: 58px; left: 0; right: 0; font-size: 22px; font-weight: 700; line-height: .94; text-align: center; letter-spacing: -.07em; }
+    .preview--landing-love { background: linear-gradient(140deg, #0b071b, #271152 48%, #110814); }.love-orb { position: absolute; width: 130px; height: 130px; top: 23px; left: 50%; border: 1px solid rgba(255,255,255,.6); border-radius: 50%; box-shadow: 0 0 0 24px rgba(166,94,255,.12), 0 0 38px #c15cf2; transform: translateX(-50%); }.love-line { position: absolute; height: 1px; background: linear-gradient(90deg, transparent, #ff6eac, transparent); transform: rotate(-27deg); }.love-line--one { top: 70px; left: -15%; width: 110%; }.love-line--two { top: 110px; left: -16%; width: 120%; transform: rotate(20deg); opacity: .55; }.love-title { position: absolute; z-index: 1; left: 17px; bottom: 19px; font-size: 21px; font-weight: 700; line-height: .92; letter-spacing: -.07em; }.love-play { position: absolute; z-index: 1; right: 18px; bottom: 20px; display: grid; place-items: center; width: 28px; height: 28px; border: 1px solid rgba(255,255,255,.65); border-radius: 50%; font-size: 10px; }
+    .preview--envato { background: radial-gradient(circle at 67% 42%, rgba(243,255,97,.6), transparent 25%), linear-gradient(135deg, #16353a, #0b1417 68%); }.envato-cube { position: absolute; top: 53px; left: 52%; width: 61px; height: 61px; transform: translateX(-50%) rotate(30deg) skewY(-30deg) scaleY(.86); }.envato-cube i, .envato-cube b, .envato-cube em { position: absolute; inset: 0; display: block; background: linear-gradient(135deg, #e7fb74, #50a063); }.envato-cube b { transform: translate(52px, -30px) skewY(30deg); background: linear-gradient(180deg, #a1e356, #2a743f); }.envato-cube em { transform: translate(0, -60px) skewX(-30deg); background: linear-gradient(135deg, #f8ffaf, #87cb49); }.envato-glow { position: absolute; inset: 0; background: radial-gradient(circle at 55% 49%, rgba(213,255,116,.22), transparent 25%); }.envato-copy { position: absolute; left: 17px; bottom: 20px; color: #f1ffb4; font-size: 22px; font-weight: 700; line-height: .92; letter-spacing: -.07em; }
+    .preview--framer-3d { background: radial-gradient(circle at 62% 38%, #5831ca, transparent 25%), linear-gradient(135deg, #070711, #18122d); }.framer-planet { position: absolute; top: 38px; right: 18%; width: 84px; height: 84px; border-radius: 50%; background: linear-gradient(140deg, #f0a7ff, #6534f6 52%, #19124d); box-shadow: inset -15px -13px 20px rgba(0,0,0,.42), 0 0 32px rgba(135,77,255,.75); }.framer-ring { position: absolute; top: 71px; right: 10%; width: 126px; height: 34px; border: 4px solid #a9dbff; border-radius: 50%; opacity: .85; transform: rotate(-18deg); }.framer-type { position: absolute; left: 17px; bottom: 20px; font-size: 23px; font-weight: 700; line-height: .9; letter-spacing: -.08em; }
+    .preview--motionsites { background: radial-gradient(circle at 50% 75%, #bd7df3 0, #643d94 19%, transparent 48%), linear-gradient(155deg, #211a37, #0c0a11 63%); }.motion-grid { position: absolute; inset: 25px 14px 14px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 7px; }.motion-grid span { border: 1px solid rgba(255,255,255,.22); border-radius: 6px; background: linear-gradient(135deg, rgba(255,255,255,.15), transparent 49%), radial-gradient(circle at 60% 60%, #e296ff, #2a1c48 61%); }.motion-grid span:nth-child(2) { background: linear-gradient(140deg, #fff0e8, #8b7286); }.motion-grid span:nth-child(3) { background: radial-gradient(circle at 45% 65%, #ff6b47, transparent 23%), #11131a; }.motionsites-copy { position: absolute; z-index: 1; left: 17px; bottom: 20px; font-size: 21px; font-weight: 800; line-height: .88; letter-spacing: -.075em; text-transform: uppercase; }
+    .card-body { display: flex; flex: 1; flex-direction: column; padding: 1rem 1rem 1.05rem; }
+    .card-top { display: flex; flex-wrap: wrap; gap: .4rem; align-items: center; margin-bottom: .75rem; }
+    .card-type { color: #c7c5cf; font: 600 .68rem/1 ui-monospace, SFMono-Regular, Menlo, monospace; letter-spacing: .04em; text-transform: uppercase; }
+    .card h3 { margin: 0; font-size: 1.16rem; letter-spacing: -.04em; }
+    .card p { margin: .46rem 0 0; color: var(--muted); font-size: .86rem; line-height: 1.53; }
+    .card-action { display: flex; justify-content: space-between; gap: 1rem; align-items: center; margin-top: auto; padding-top: 1rem; color: #fff; font-size: .82rem; font-weight: 700; }
+    .card-action span:last-child { color: var(--pink); font-size: 1.1rem; }
+    .how { margin-top: 1.1rem; padding: 1rem 1.1rem; border-left: 2px solid var(--pink); background: rgba(255,255,255,.035); color: #d4d2d9; font-size: .91rem; line-height: 1.55; }
+    .how strong { color: #fff; }
+    .back { position: fixed; right: 22px; bottom: 22px; padding: .55rem .85rem; border: 1px solid #40303b; border-radius: 10px; background: #160a10; color: var(--pink); font-size: .82rem; text-decoration: none; }
+    @media (max-width: 900px) { .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } .featured { grid-template-columns:1fr; }.featured-preview { min-height:220px; } }
+    @media (max-width: 580px) { .wrap { padding-bottom: 6rem; }.section-heading { grid-template-columns: 1fr; gap: .5rem; }.section-note { grid-column: 1; margin: 0; }.grid { grid-template-columns: 1fr; }.preview { min-height: 178px; }.back { right: 14px; bottom: 14px; } }
+  </style>
 </head>
 <body>
-<div class="wrap">
-  <span class="tag">Class material · save this page</span>
-  <h1>Where to find landing-page references</h1>
-  <p class="subtitle">The research diet for Way 2 (AI-native prompts) — and the hunting grounds for Way 1 (clone). Click any card to open the site in a new tab; hand AdaL the URL, not your description of it.</p>
+  <main class="wrap">
+    <span class="eyebrow">Class material · free-first resource library</span>
+    <h1>Pick a modern starting point.</h1>
 
-  <h2>🤖 AI-native prompt sites <span class="why">— Way 2: the prompt IS the reference</span></h2>
-  <div class="grid">
-    <a class="site" href="https://motionsites.ai/" target="_blank" rel="noopener"><span class="name">MotionSites AI</span><span class="url">motionsites.ai</span><p><span class="star">★ the flagship.</span> 364 copy-paste prompts for animated landing pages — heroes, footers, CTAs, pricing — each with a looping video preview, built for Lovable, Bolt, Cursor, Claude. "Just copy, paste, and launch."</p></a>
-    <a class="site" href="https://designrocket.io/" target="_blank" rel="noopener"><span class="name">Design Rocket</span><span class="url">designrocket.io</span><p>The course/library behind MotionSites: full AI design curriculum + template drops. The "agencies charge $5,000 for this" framing is the market signal.</p></a>
-    <a class="site" href="https://21st.dev/" target="_blank" rel="noopener"><span class="name">21st.dev</span><span class="url">21st.dev</span><p>12,000+ community UI components with a <em>Copy prompt</em> button — paste the prompt into your agent and it rebuilds the component. Component-level remixing.</p></a>
-    <a class="site" href="https://ui.aceternity.com/" target="_blank" rel="noopener"><span class="name">Aceternity UI</span><span class="url">ui.aceternity.com</span><p>200+ bold, animated React/Tailwind blocks and full landing templates. The go-to for "hero with glow and beams" effects.</p></a>
-    <a class="site" href="https://magicui.design/" target="_blank" rel="noopener"><span class="name">Magic UI</span><span class="url">magicui.design</span><p>Animated marketing components (marquees, bento grids, globe, shimmer) — copy the code or the prompt. Softer, more corporate than Aceternity.</p></a>
-    <a class="site" href="https://www.stork.ai/free-animated-landing-page-prompts" target="_blank" rel="noopener"><span class="name">Stork — free prompt stack</span><span class="url">stork.ai</span><p>The $349 MotionSites stack rebuilt with free equivalents (Magic UI, etc.) — 159 looping video backgrounds included. The budget Way 2.</p></a>
-  </div>
+    <section id="featured-reference">
+      <div class="section-heading"><span class="section-number">00</span><h2>Featured: read a real design system</h2></div>
+      <a class="featured" href="https://styles.refero.design/" target="_blank" rel="noopener"><div class="featured-preview"><div class="featured-terminal">2,000+ AI-readable<br>design systems</div></div><div class="featured-copy"><div class="card-top"><span class="chip chip--free">Free</span><span class="chip chip--clone">Live previews · cloneable</span><span class="card-type">DESIGN.md inventory</span></div><h3>Refero Styles</h3><p>Browse the full inventory of real product design systems, then choose a reference to study.</p><div class="featured-action">Start here → open the Modal example first <span>↗</span></div></div></a>
+    </section>
 
-  <h2>🎨 Galleries <span class="why">— layout, hierarchy, section ideas</span></h2>
-  <div class="grid">
-    <a class="site" href="https://www.lapa.ninja/" target="_blank" rel="noopener"><span class="name">Lapa Ninja</span><span class="url">lapa.ninja</span><p>7,300+ landing pages and 15,000+ full-page screenshots, filterable by category. The default starting point for SaaS.</p></a>
-    <a class="site" href="https://onepagelove.com/" target="_blank" rel="noopener"><span class="name">One Page Love</span><span class="url">onepagelove.com</span><p>Curated single-page sites — the exact format of a landing page. Great for scroll rhythm and section order.</p></a>
-    <a class="site" href="https://land-book.com/" target="_blank" rel="noopener"><span class="name">Land-book</span><span class="url">land-book.com</span><p>Large curated collection of landing-page designs, tagged by style (dark, minimal, SaaS…).</p></a>
-    <a class="site" href="https://saaslandingpage.com/" target="_blank" rel="noopener"><span class="name">SaaS Landing Page</span><span class="url">saaslandingpage.com</span><p>SaaS-only, real shipped products — not concepts. Filter by social-proof pattern, pricing style, section type.</p></a>
-    <a class="site" href="https://landingfolio.com/" target="_blank" rel="noopener"><span class="name">Landingfolio</span><span class="url">landingfolio.com</span><p>SaaS landing pages broken down section by section — hero, features, pricing, FAQ galleries.</p></a>
-    <a class="site" href="https://saaspo.com/" target="_blank" rel="noopener"><span class="name">Saaspo</span><span class="url">saaspo.com</span><p>SaaS website gallery with UI screen captures; good for app-shot treatment inside heroes.</p></a>
-  </div>
+    <section id="ai-native">
+      <div class="section-heading"><span class="section-number">01</span><h2>AI-native, free-first options</h2><p class="section-note">Give AdaL structured design context, a copyable prompt, or a working implementation. These are the fastest route from a direction to an original page.</p></div>
+      <div class="grid">
+        <a class="card" href="https://styles.refero.design/" target="_blank" rel="noopener"><div class="preview preview--refero"><div class="preview__bar"><i></i><i></i><i></i></div><div class="type">DESIGN.md<br>for AI agents</div><div class="search"></div></div><div class="card-body"><div class="card-top"><span class="chip chip--free">Free</span><span class="chip chip--clone">Live preview · cloneable</span><span class="card-type">Copy DESIGN.md</span></div><h3>Refero Styles</h3><p>Real product design systems, already distilled into a usable brief.</p><div class="card-action"><span>Copy a DESIGN.md into AdaL</span><span>↗</span></div></div></a>
+        <a class="card" href="https://21st.dev/community/components/s/landing-page" target="_blank" rel="noopener"><div class="preview preview--21st"><div class="preview__bar"><i></i><i></i><i></i></div><div class="type">The living<br>library of<br>interfaces</div><div class="orb"></div></div><div class="card-body"><div class="card-top"><span class="chip chip--free">Free daily copies</span><span class="chip chip--clone">Live preview · cloneable</span><span class="card-type">Copy prompt + code</span></div><h3>21st.dev</h3><p>Modern components and landing blocks with an AI-ready starting prompt.</p><div class="card-action"><span>Copy a prompt or component</span><span>↗</span></div></div></a>
+        <a class="card" href="https://reactbits.dev/" target="_blank" rel="noopener"><div class="preview preview--bits"><div class="preview__bar"><i></i><i></i><i></i></div><div class="wave"></div><div class="code">import { ColorBends } from '@components/ColorBends';<br><br>&lt;ColorBends speed={0.2} /&gt;</div></div><div class="card-body"><div class="card-top"><span class="chip chip--free">Open source</span><span class="chip chip--clone">Live preview · cloneable</span><span class="card-type">Copy code + prompt</span></div><h3>React Bits</h3><p>Creative motion and visual effects for a memorable hero.</p><div class="card-action"><span>Add one effect to your page</span><span>↗</span></div></div></a>
+        <a class="card" href="https://magicui.design/components" target="_blank" rel="noopener"><div class="preview preview--magic"><div class="preview__bar"><i></i><i></i><i></i></div><div class="type">UI library for<br>Design Engineers</div><div class="rainbow"></div></div><div class="card-body"><div class="card-top"><span class="chip chip--free">Open source</span><span class="chip chip--clone">Live preview · cloneable</span><span class="card-type">Copy code</span></div><h3>Magic UI</h3><p>Clean, production-ready motion for SaaS and product marketing.</p><div class="card-action"><span>Preview an effect, then adapt it</span><span>↗</span></div></div></a>
+        <a class="card" href="https://ui.aceternity.com/components" target="_blank" rel="noopener"><div class="preview preview--aceternity"><div class="preview__bar"><i></i><i></i><i></i></div><div class="type">Beautiful<br>landing pages.</div><div class="windows"></div></div><div class="card-body"><div class="card-top"><span class="chip chip--free">Free components</span><span class="chip chip--clone">Live preview · cloneable</span><span class="card-type">Copy code</span></div><h3>Aceternity UI</h3><p>Bold hero patterns, bento layouts, and high-contrast effects.</p><div class="card-action"><span>Use a hero as your starting point</span><span>↗</span></div></div></a>
+      </div>
+      <p class="how"><strong>Prompt path:</strong> choose Refero Styles for a complete design brief, or 21st.dev for a focused component prompt. Ask AdaL to make the result original for your product, then inspect it in the browser at desktop and mobile widths.</p>
+    </section>
 
-  <h2>✨ Motion &amp; taste ceiling <span class="why">— the "wow" bar</span></h2>
-  <div class="grid">
-    <a class="site" href="https://www.awwwards.com/" target="_blank" rel="noopener"><span class="name">Awwwards</span><span class="url">awwwards.com</span><p>Jury-scored award-winning sites. Where human design taste currently beats AI — go here to see what "professional" means at the top.</p></a>
-    <a class="site" href="https://godly.website/" target="_blank" rel="noopener"><span class="name">Godly</span><span class="url">godly.website</span><p>Hand-picked web design at a high bar — heavy on animation and modern layout. Excellent for dark-mode, gradient-glow direction.</p></a>
-    <a class="site" href="https://www.behance.net/galleries/web-design" target="_blank" rel="noopener"><span class="name">Behance — Web Design</span><span class="url">behance.net</span><p>Designer case studies with intent: why the palette, why the type. Read the reasoning, not just the shots.</p></a>
-    <a class="site" href="https://dribbble.com/tags/landing_page" target="_blank" rel="noopener"><span class="name">Dribbble — Landing Page</span><span class="url">dribbble.com</span><p>Concept shots — strongest for hero art direction, weakest for what actually ships. Steal vibes, not layouts.</p></a>
-  </div>
+    <section id="templates">
+      <div class="section-heading"><span class="section-number">02</span><h2>Rendered pages, templates &amp; clone targets</h2><p class="section-note">Start here when the page itself is the reference. Open a preview, give AdaL the URL, extract a design spec, and rebuild an original product version.</p></div>
+      <div class="grid">
+        <a class="card" href="https://www.framer.com/marketplace/templates/categories/free-website-templates/" target="_blank" rel="noopener"><div class="preview preview--framer"><div class="preview__bar"><i></i><i></i><i></i></div><div class="gallery"><span class="tile"></span><span class="tile"></span><span class="tile"></span><span class="tile"></span></div></div><div class="card-body"><div class="card-top"><span class="chip chip--free">Free templates</span><span class="chip chip--clone">Live preview · cloneable</span><span class="card-type">Template + clone URL</span></div><h3>Framer Marketplace</h3><p>Polished free templates across AI, SaaS, apps, and portfolios.</p><div class="card-action"><span>Pick a free template to clone</span><span>↗</span></div></div></a>
+        <a class="card" href="https://www.shadcnblocks.com/pages/landing-page" target="_blank" rel="noopener"><div class="preview preview--shadcn"><div class="preview__bar"><i></i><i></i><i></i></div><div class="wire"><span></span><span></span><span></span></div></div><div class="card-body"><div class="card-top"><span class="chip chip--free">Free options</span><span class="chip chip--clone">Live preview · cloneable</span><span class="card-type">Copy code + template</span></div><h3>shadcnblocks</h3><p>Structured landing pages and sections for a practical product build.</p><div class="card-action"><span>Copy a layout or rebuild it</span><span>↗</span></div></div></a>
+        <a class="card" href="https://cruip.com/free-templates/" target="_blank" rel="noopener"><div class="preview preview--cruip"><div class="preview__bar"><i></i><i></i><i></i></div><div class="screen"></div></div><div class="card-body"><div class="card-top"><span class="chip chip--free">Free templates</span><span class="chip chip--clone">Live preview · cloneable</span><span class="card-type">Template + source code</span></div><h3>Cruip</h3><p>Complete coded templates for students who want a real starter repo.</p><div class="card-action"><span>Remix the template source</span><span>↗</span></div></div></a>
+      </div>
+      <p class="how"><strong>Clone path:</strong> give AdaL the live preview URL—not a description. Ask it to capture 1440, 768, and 390 px views; write a design spec; implement an original product version; and compare the same viewports before you ship.</p>
+    </section>
 
-  <h2>🧭 UX flows &amp; real products <span class="why">— what converts, what's tested</span></h2>
-  <div class="grid">
-    <a class="site" href="https://www.pageflows.com/" target="_blank" rel="noopener"><span class="name">Pageflows</span><span class="url">pageflows.com</span><p>Videos of real onboarding, signup, and pricing flows from top SaaS. Copy the flow structure, not just the pixels.</p></a>
-    <a class="site" href="https://mobbin.com/" target="_blank" rel="noopener"><span class="name">Mobbin</span><span class="url">mobbin.com</span><p>Every screen of successful apps and web products, searchable. The reference library for mobile breakpoints.</p></a>
-    <a class="site" href="https://refero.design/" target="_blank" rel="noopener"><span class="name">Refero</span><span class="url">refero.design</span><p>Design-pattern search across real products — search by component ("pricing toggle", "footer CTA") instead of by whole page.</p></a>
-  </div>
-
-  <h2>🎯 Clone targets from previous classes <span class="why">— battle-tested</span></h2>
-  <div class="grid">
-    <a class="site" href="https://www.hyperspell.com/" target="_blank" rel="noopener"><span class="name">Hyperspell</span><span class="url">hyperspell.com</span><p>Bootcamp-2 Class 1: AdaL Engineer cloned the hero end-to-end — research, extraction, build, visual verification — with MiniMax M3 as browser-use worker.</p></a>
-    <a class="site" href="https://xtract.framer.ai/" target="_blank" rel="noopener"><span class="name">Xtract (Framer)</span><span class="url">xtract.framer.ai</span><p>Hero cloned in ~10 minutes by a single browser-use worker. The build → screenshot → fix loop converged in 2–3 rounds.</p></a>
-  </div>
-
-  <h2>📋 Copy-paste prompts for AdaL <span class="why">— free, tested, yours</span></h2>
-  <div class="promptbox">
-    <div class="phead"><span class="pname">1 · Reverse-engineer any site into a design spec (Way 1 → Way 2 bridge)</span><button class="copy" onclick="copyPrompt('p1')">Copy</button></div>
-    <pre id="p1">Open TARGET_URL in the browser. Take full-page screenshots at 1440, 768 and 390 px. Then extract the design system from the live DOM: exact hex colors, font families and the .woff2 URLs, type scale, spacing rhythm, border radii, shadows, and every animation (keyframes, durations, easing, stagger). Record the hero animation as a short video and scrub it frame by frame to get the timing right. Write everything into design-spec.md — palette, typography, layout patterns, section inventory, motion notes. Do not rebuild yet.</pre>
-  </div>
-  <div class="promptbox">
-    <div class="phead"><span class="pname">2 · Clone a preview you'd otherwise pay for</span><button class="copy" onclick="copyPrompt('p2')">Copy</button></div>
-    <pre id="p2">Go to motionsites.ai and open the animated preview of HERO_NAME (free to watch). Study the preview video frame by frame: layout, palette, type, and the exact motion — what animates, in what order, with what easing. Recreate it as an original hero section for MY_PRODUCT using React + Tailwind + Framer Motion, matching the feel at near-100% fidelity but with my own copy and brand colors. Then screenshot your build next to the preview and iterate until they match.</pre>
-  </div>
-  <div class="promptbox">
-    <div class="phead"><span class="pname">3 · Build the full landing page from a reference set (Way 2)</span><button class="copy" onclick="copyPrompt('p3')">Copy</button></div>
-    <pre id="p3">Study these references: URL_1, URL_2, URL_3. Screenshot each and analyze what makes them work: hero composition, section order, social proof placement, CTA rhythm, color and type choices. Write a design-spec.md for MY_PRODUCT that remixes the best patterns into one original design (dark mode, PINK_ACCENT). Then build the full landing page from that spec — hero, features, social proof, pricing, FAQ, footer — responsive at 1440/768/390. Open the result in the browser, screenshot it, critique it against the spec like a demanding art director, and fix what's off before showing me.</pre>
-  </div>
-
-  <h2>▶️ How to use this list with AdaL</h2>
-  <div class="terminal">
-    <div class="line"><span class="comment"># research prompt — Way 2 (AI-native prompt)</span></div>
-    <div class="line"><span class="prompt">&gt;</span> <span class="cmd">Browse lapa.ninja and motionsites.ai, shortlist 5 heroes for a dark-mode AI product, screenshot them, and write design-spec.md (palette, type scale, section order, animation notes)</span></div>
-    <div class="line">&nbsp;</div>
-    <div class="line"><span class="comment"># clone prompt — Way 1</span></div>
-    <div class="line"><span class="prompt">&gt;</span> <span class="cmd">Clone the hero of https://www.hyperspell.com/ pixel-level, extract fonts/colors/animation timings, rebuild in my project, then screenshot-diff until it matches</span></div>
-    <div class="line">&nbsp;</div>
-    <div class="line"><span class="comment"># tip: hand AdaL the URL, not your description of the URL. It sees what rendered.</span></div>
-  </div>
-
-</div>
-<a class="back" href="03-two-ways.html">← Two Ways</a>
-<script>
-  function copyPrompt(id) {
-    const text = document.getElementById(id).innerText;
-    const btn = document.getElementById(id).closest('.promptbox').querySelector('.copy');
-    const done = () => { btn.textContent = 'Copied ✓'; btn.classList.add('done'); setTimeout(() => { btn.textContent = 'Copy'; btn.classList.remove('done'); }, 1600); };
-    if (navigator.clipboard && window.isSecureContext) {
-      navigator.clipboard.writeText(text).then(done).catch(() => fallback(text, done));
-    } else { fallback(text, done); }
-  }
-  function fallback(text, done) {
-    const ta = document.createElement('textarea'); ta.value = text; ta.style.position = 'fixed'; ta.style.opacity = '0';
-    document.body.appendChild(ta); ta.select();
-    try { document.execCommand('copy'); done(); } catch (e) {}
-    document.body.removeChild(ta);
-  }
-</script>
+    <section id="premium-3d">
+      <div class="section-heading"><span class="section-number">03</span><h2>3D &amp; motion inspiration</h2></div>
+      <div class="grid">
+        <a class="card" href="https://www.lapa.ninja/motion/3d-websites/" target="_blank" rel="noopener"><div class="preview preview--spline"><div class="preview__bar"><i></i><i></i><i></i></div><span class="spline-shape spline-shape--one"></span><span class="spline-shape spline-shape--two"></span><span class="spline-shape spline-shape--three"></span><div class="spline-grid"></div><div class="spline-title">3D websites<br>in motion</div></div><div class="card-body"><div class="card-top"><span class="chip chip--free">Free to browse</span><span class="chip chip--clone">Video preview · cloneable</span><span class="card-type">3D motion gallery</span></div><h3>Lapa Ninja 3D</h3><p>Real 3D landing pages with recorded scrolls, hovers, and transitions.</p><div class="card-action"><span>Choose a motion reference to study</span><span>↗</span></div></div></a>
+        <a class="card" href="https://www.landing.love/" target="_blank" rel="noopener"><div class="preview preview--landing-love"><div class="preview__bar"><i></i><i></i><i></i></div><div class="love-orb"></div><div class="love-line love-line--one"></div><div class="love-line love-line--two"></div><div class="love-title">Motion-led<br>landing pages</div><span class="love-play">▶</span></div><div class="card-body"><div class="card-top"><span class="chip chip--free">Free to browse</span><span class="chip chip--clone">Video preview · cloneable</span><span class="card-type">Motion gallery</span></div><h3>Landing Love</h3><p>Full-page recordings of motion-led sites worth studying.</p><div class="card-action"><span>Watch, then note the motion</span><span>↗</span></div></div></a>
+        <a class="card" href="https://refs.gallery/category/3d" target="_blank" rel="noopener"><div class="preview preview--envato"><div class="preview__bar"><i></i><i></i><i></i></div><div class="envato-cube"><i></i><b></b><em></em></div><div class="envato-glow"></div><div class="envato-copy">3D site<br>references</div></div><div class="card-body"><div class="card-top"><span class="chip chip--free">Free to browse</span><span class="chip chip--clone">Live preview · cloneable</span><span class="card-type">3D gallery</span></div><h3>Refs.gallery 3D</h3><p>Hand-picked 3D websites for finding a specific visual direction.</p><div class="card-action"><span>Pick a style, then study its page</span><span>↗</span></div></div></a>
+        <a class="card" href="https://www.framer.com/community/gallery/categories/landing-page/" target="_blank" rel="noopener"><div class="preview preview--framer-3d"><div class="preview__bar"><i></i><i></i><i></i></div><div class="framer-planet"></div><div class="framer-ring"></div><div class="framer-type">Made in<br>Framer</div></div><div class="card-body"><div class="card-top"><span class="chip">Free + paid</span><span class="chip chip--clone">Live preview · cloneable</span><span class="card-type">Gallery + template</span></div><h3>Framer Gallery</h3><p>Live Framer sites with polished and experimental interactions.</p><div class="card-action"><span>Choose a live page to study</span><span>↗</span></div></div></a>
+        <a class="card" href="https://motionsites.ai/" target="_blank" rel="noopener"><div class="preview preview--motionsites"><div class="preview__bar"><i></i><i></i><i></i></div><div class="motion-grid"><span></span><span></span><span></span></div><div class="motionsites-copy">Animated<br>AI prompts</div></div><div class="card-body"><div class="card-top"><span class="chip">Paid-first</span><span class="chip chip--clone">Live preview · cloneable</span><span class="card-type">Prompt library</span></div><h3>MotionSites</h3><p>Premium prompt ideas and animated visual directions; some individual prompts are free.</p><div class="card-action"><span>Copy a free prompt or study a preview</span><span>↗</span></div></div></a>
+      </div>
+      <p class="how"><strong>Inspiration rule:</strong> use a 3D or motion reference to define composition, pacing, and interaction—not to copy its brand or assets. Capture desktop and mobile evidence, write a design spec, then make the result original.</p>
+    </section>
+  </main>
+  <a class="back" href="03-two-ways.html">← Two Ways</a>
 </body>
 </html>
