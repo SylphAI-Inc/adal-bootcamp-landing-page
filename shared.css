@@ -19,7 +19,11 @@ body {
 
 .deck {
   width: 100vw;
-  height: 100vh;
+  min-height: 100vh;
+}
+
+body {
+  overflow-y: auto;
 }
 
 .slide {
@@ -147,8 +151,15 @@ h1 strong {
   }
 
   .slide {
-    /* Leave the presentation canvas to the content, not outer margins. */
+    /* Keep the chrome near the edges while centering the presentation rail. */
     padding: clamp(2rem, 3vw, 4rem);
+  }
+
+  .content {
+    /* Older decks keep local full-width rules; the shared stage wins on wide screens. */
+    width: min(100%, 1680px) !important;
+    max-width: 1680px !important;
+    margin-inline: auto !important;
   }
 
   .brand img {
@@ -246,7 +257,8 @@ h1 strong {
   }
 
   .two-column {
-    width: min(82vw, 1580px);
+    width: 100%;
+    max-width: 1580px;
     gap: clamp(1.5rem, 3vw, 3rem);
   }
 
@@ -254,6 +266,13 @@ h1 strong {
     width: 3.2rem;
     height: 3.2rem;
     font-size: 1.2rem;
+  }
+}
+
+@media (min-width: 2400px) {
+  .content {
+    width: min(100%, 1840px) !important;
+    max-width: 1840px !important;
   }
 }
 

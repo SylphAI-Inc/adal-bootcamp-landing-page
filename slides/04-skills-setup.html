@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Clone Any Website</title>
-  <link rel="stylesheet" href="../shared.css">
+  <link rel="stylesheet" href="../shared.css?v=wide-stage-20260911">
   <style>
     .skill-page { width: min(1120px, 100%); margin: auto; }
     .skill-card { margin-top: 2rem; padding: clamp(1.35rem, 3vw, 2.25rem); border: 1px solid var(--adal-border); border-radius: 1.5rem; background: rgba(255, 255, 255, 0.025); }
@@ -15,6 +15,10 @@
     .prompt { color: var(--adal-pink); }
     .copy-button { border: 1px solid rgba(255, 88, 152, 0.65); border-radius: 1rem; padding: 0 1.15rem; background: var(--adal-pink); color: #210913; font: 700 0.82rem/1 Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; cursor: pointer; }
     .copy-button.copied { background: #9be564; border-color: #9be564; }
+    .nav { position: fixed; right: 2rem; bottom: 1.5rem; display: flex; gap: .5rem; }
+    .nav button { width: 2.6rem; height: 2.6rem; border: 1px solid var(--adal-border); border-radius: 50%; background: #101014; color: #fff; font-size: 1rem; cursor: pointer; }
+    .nav button:disabled { opacity: .25; }
+    .nav button:hover:not(:disabled) { border-color: var(--adal-pink); color: var(--adal-pink); }
     @media (max-width: 680px) { .skill-page { margin: 3rem auto; } .command-row { flex-direction: column; } .copy-button { min-height: 3.15rem; } }
   </style>
 </head>
@@ -23,10 +27,11 @@
   <section class="slide active">
     <div class="top"><a class="brand" href="../index.html" aria-label="Back to class home"><img src="../assets/adal-logo-horizontal.svg" alt="AdaL"></a></div>
     <main class="content skill-page">
-      <p class="eyebrow">Skill setup</p>
-      <h1>Clone Any Website.</h1>
+      <p class="eyebrow">Skills</p>
+      <h1>Give AdaL<br><strong>reusable knowledge.</strong></h1>
+      <p class="lede">Skills are small instruction packs that help AdaL do a kind of work consistently.</p>
       <section class="skill-card">
-        <a class="skill-link" href="https://atskills.one/SylphAI-Inc/clone-anywebsite" target="_blank" rel="noopener">atskills.one/SylphAI-Inc/clone-anywebsite ↗</a>
+        <a class="skill-link" href="https://atskills.one" target="_blank" rel="noopener">Browse skills on atskills.one ↗</a>
         <div class="command-row">
           <code id="skill-command" class="command"><span class="prompt">&gt;</span> @skills:gh:SylphAI-Inc/skills/skills/clone-anywebsite</code>
           <button id="copy-command" class="copy-button" type="button" onclick="copySkillCommand()">Copy command</button>
@@ -34,8 +39,66 @@
       </section>
     </main>
   </section>
+
+  <section class="slide">
+    <div class="top"><a class="brand" href="../index.html" aria-label="Back to class home"><img src="../assets/adal-logo-horizontal.svg" alt="AdaL"></a></div>
+    <main class="content skill-page">
+      <p class="eyebrow">Project skills</p>
+      <h1>Keep your skills<br><strong>in .atskills.</strong></h1>
+      <p class="lede">A project skill lives with the project, so AdaL can use the same instructions every time.</p>
+      <section class="skill-card">
+        <div class="command-row"><code class="command"><span class="prompt">&gt;</span> .atskills/<br>&nbsp;&nbsp;design-review/<br>&nbsp;&nbsp;&nbsp;&nbsp;SKILL.md</code></div>
+        <p class="caption">Put the reusable instructions in <strong>SKILL.md</strong>. Keep project-specific skills close to the project.</p>
+      </section>
+    </main>
+  </section>
+
+  <section class="slide">
+    <div class="top"><a class="brand" href="../index.html" aria-label="Back to class home"><img src="../assets/adal-logo-horizontal.svg" alt="AdaL"></a></div>
+    <main class="content skill-page">
+      <p class="eyebrow">Find a skill</p>
+      <h1>Ask AdaL<br><strong>to find it.</strong></h1>
+      <p class="lede">The <strong>skill</strong> tool can search the skills catalogue and read the skill that matches your task. You do not need to know the path first.</p>
+      <section class="skill-card">
+        <div class="command-row"><code class="command"><span class="prompt">&gt;</span> Find a skill for reviewing a landing page.</code></div>
+        <p class="caption">AdaL searches, reads the relevant instructions, and uses them for the task.</p>
+      </section>
+    </main>
+  </section>
+
+  <section class="slide">
+    <div class="top"><a class="brand" href="../index.html" aria-label="Back to class home"><img src="../assets/adal-logo-horizontal.svg" alt="AdaL"></a></div>
+    <main class="content skill-page">
+      <p class="eyebrow">Use a skill</p>
+      <h1>Type <strong>@</strong><br>to add one.</h1>
+      <p class="lede">Use <strong>@</strong> when you already know the skill you want. Nothing installs or stays in the prompt unless you choose it.</p>
+      <section class="skill-card">
+        <div class="command-row"><code class="command"><span class="prompt">&gt;</span> @skills:gh:owner/repo/path</code></div>
+        <p class="caption"><strong>Read it for this task.</strong> Add <code>:save</code> to keep a project copy, or <code>:install</code> to make it auto-trigger.</p>
+      </section>
+    </main>
+  </section>
 </div>
+<div class="nav"><button id="prev" onclick="changeSlide(-1)" aria-label="Previous slide">←</button><button id="next" onclick="changeSlide(1)" aria-label="Next slide">→</button></div>
 <script>
+  let current = 0;
+  const slides = document.querySelectorAll('.slide');
+  const prev = document.getElementById('prev');
+  const next = document.getElementById('next');
+  function show(n) {
+    slides[current].classList.remove('active');
+    current = Math.max(0, Math.min(n, slides.length - 1));
+    slides[current].classList.add('active');
+    prev.disabled = current === 0;
+    next.disabled = current === slides.length - 1;
+  }
+  function changeSlide(direction) { show(current + direction); }
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'ArrowRight' || event.key === ' ') changeSlide(1);
+    if (event.key === 'ArrowLeft') changeSlide(-1);
+  });
+  show(0);
+
   function copySkillCommand() {
     const command = document.getElementById('skill-command').innerText.trim().replace(/^>\s*/, '');
     const button = document.getElementById('copy-command');

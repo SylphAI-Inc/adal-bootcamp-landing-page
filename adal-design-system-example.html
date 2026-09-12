@@ -1,0 +1,217 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Class-only Ada Design System Example.">
+  <title>Ada Design System Example — Design System Reference</title>
+  <link rel="stylesheet" href="shared.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root { --ink:#16070d; --panel:#21131a; --pink:#ff5898; --pink-soft:#ffb2cf; --cream:#fffafa; --line:#e9e6e7; --text:#191317; --muted:#746e72; --code:#274b65; --mono:"SF Mono",Menlo,Consolas,monospace; --sans:"Space Grotesk",system-ui,sans-serif; }
+    * { box-sizing:border-box; } html,body { height:100%; } body { margin:0; overflow:hidden; background:var(--cream); color:var(--text); font-family:var(--sans); }
+    button,a { font:inherit; } button { cursor:pointer; }
+    .topbar { height:82px; display:flex; align-items:center; gap:14px; padding:0 24px; border-bottom:1px solid var(--line); background:#fff; font-size:27px; letter-spacing:-.045em; }.mark { display:grid; place-items:center; width:48px; height:48px; border:4px solid #111; border-radius:50%; color:#111; font-size:27px; font-weight:800; }.slash { color:#777; }.crumb { font-weight:500; }
+    .app { display:grid; grid-template-columns:minmax(390px, 49%) minmax(480px, 51%); height:calc(100vh - 82px); }
+    .preview-pane { overflow:auto; border-right:1px solid var(--line); background:#fcfbfb; }.preview-wrap { width:min(100% - 64px, 740px); margin:48px auto 70px; }.live-preview { position:relative; min-height:440px; overflow:hidden; padding:20px; border-radius:16px; background:radial-gradient(ellipse 75% 66% at 23% 30%,rgba(255,255,255,.2),transparent 66%),linear-gradient(180deg,#ff5898 0%,#e84d87 100%); color:#fff; box-shadow:0 10px 25px rgba(22,7,13,.16); }.live-preview::after { position:absolute; top:-30%; right:-11%; width:62%; aspect-ratio:1; border:3px solid rgba(22,7,13,.53); border-radius:49% 51% 63% 37% / 40% 42% 58% 60%; box-shadow:inset 0 0 0 18px rgba(255,255,255,.18); content:""; transform:rotate(21deg); }.preview-nav { position:relative; z-index:1; display:flex; align-items:center; justify-content:space-between; height:22px; padding:0 7px; border-radius:999px; background:rgba(22,7,13,.94); color:#fff; font-size:6px; }.preview-nav strong { color:var(--pink); font-size:7px; }.preview-nav span { display:flex; gap:8px; }.preview-body { position:relative; z-index:1; margin:76px 0 0 13%; }.preview-body h1 { max-width:8.5ch; margin:0; color:#fff; font-size:clamp(2.25rem, 5vw, 4.5rem); font-weight:500; line-height:.85; letter-spacing:-.095em; }.brush { position:relative; display:inline-block; }.brush::after { position:absolute; right:-2%; bottom:-.17em; left:-.02em; height:.14em; background:#16070d; clip-path:polygon(0 53%,73% 16%,100% 0,83% 66%,17% 96%,0 80%); content:""; }.preview-body p { max-width:29rem; margin:22px 0 0; color:#fff; font:500 10px/1.5 var(--mono); }.command { display:flex; align-items:center; gap:8px; width:min(80%,370px); min-height:41px; margin-top:22px; padding:0 10px; border-radius:8px; background:#21131a; box-shadow:0 10px 24px rgba(68,9,33,.3); color:#fff; font:500 8px var(--mono); }.command b { color:var(--pink-soft); }.command span { overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }.command button { margin-left:auto; padding:7px 9px; border:0; border-radius:4px; background:#fff; color:#16070d; font-size:8px; font-weight:700; }
+    .preview-copy { padding:30px 0 0; }.preview-title { display:flex; align-items:center; justify-content:space-between; gap:15px; }.preview-title h1 { margin:0; color:var(--text); font-family:var(--sans); font-size:clamp(2.1rem,3.2vw,3.5rem); font-weight:500; letter-spacing:-.07em; }.adal-mini { display:grid; place-items:center; width:46px; height:46px; border-radius:14px; background:var(--pink); color:var(--ink); font-size:24px; font-weight:900; }.preview-copy > p { max-width:47rem; margin:20px 0 0; color:#625d60; font-size:15px; line-height:1.55; }.human-section { margin-top:38px; padding-top:30px; border-top:1px solid var(--line); }.human-section h2 { margin:0; color:#21181c; font-size:21px; letter-spacing:-.045em; }.human-section > p { margin:7px 0 18px; color:#746e72; font-size:13px; line-height:1.45; }.palette-group + .palette-group { margin-top:25px; }.palette-label { margin:0 0 12px !important; color:#746e72 !important; font:600 10px/1 var(--mono) !important; letter-spacing:.08em; text-transform:uppercase; }.human-color-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:18px 14px; }.human-color-grid--brand { grid-template-columns:minmax(0,150px); }.human-color { min-width:0; }.human-color-swatch { width:100%; aspect-ratio:1.55; border:1px solid rgba(22,7,13,.13); border-radius:14px; }.human-color b { display:block; margin-top:9px; color:#21181c; font-size:13px; letter-spacing:-.03em; }.human-color code { display:block; margin-top:3px; color:#746e72; font:11px/1.35 var(--mono); }.human-color span { display:block; margin-top:7px; color:#625d60; font-size:11px; line-height:1.4; }.type-scale { overflow:hidden; border:1px solid var(--line); border-radius:14px; }.type-sample { display:grid; grid-template-columns:100px 1fr; gap:13px; align-items:center; padding:14px 15px; border-bottom:1px solid var(--line); }.type-sample:last-child { border-bottom:0; }.type-meta { color:#746e72; font:10px/1.4 var(--mono); }.type-meta b { display:block; color:#454045; font-weight:600; }.type-hero { font-size:38px; font-weight:500; line-height:.86; letter-spacing:-.085em; }.type-heading { font-size:24px; font-weight:500; letter-spacing:-.065em; }.type-body { font-size:14px; line-height:1.35; }.type-mono { font:12px/1.35 var(--mono); }.shape-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; }.shape-card { min-width:0; }.shape-sample { display:grid; min-height:72px; place-items:center; border:1px solid rgba(22,7,13,.14); background:#21131a; color:#fff; font:10px var(--mono); }.shape-card:nth-child(1) .shape-sample { border-radius:8px; }.shape-card:nth-child(2) .shape-sample { border-radius:12px; }.shape-card:nth-child(3) .shape-sample { border-radius:999px; }.shape-card b { display:block; margin-top:8px; font-size:12px; }.shape-card span { display:block; margin-top:3px; color:#746e72; font:10px/1.35 var(--mono); }.elevation { display:grid; grid-template-columns:1fr 1fr; gap:14px; }.elevation-sample { min-height:95px; padding:14px; border:1px solid rgba(22,7,13,.16); border-radius:12px; background:#21131a; box-shadow:0 13px 23px rgba(68,9,33,.22); color:#fff; font-size:12px; }.elevation-sample--flat { background:#fff; box-shadow:none; color:#21181c; }.guideline-group + .guideline-group { margin-top:24px; }.guideline-label { margin:0 0 9px !important; color:#746e72 !important; font:600 10px/1 var(--mono) !important; letter-spacing:.08em; text-transform:uppercase; }.guideline { display:grid; grid-template-columns:16px 1fr; gap:8px; padding:8px 0; color:#423b3f; font-size:12px; line-height:1.45; }.guideline::before { color:#0eae70; content:'✓'; }.guideline--dont::before { color:#e25a70; content:'×'; }
+    .spec-pane { display:flex; min-width:0; flex-direction:column; overflow:hidden; background:#fff; }.tabs { display:flex; gap:4px; min-height:72px; padding:0 26px; overflow-x:auto; border-bottom:1px solid var(--line); }.tab { flex:0 0 auto; padding:0 12px; border:0; border-bottom:2px solid transparent; background:transparent; color:#787276; font-size:13px; }.tab.is-active { border-bottom-color:#171214; color:#171214; font-weight:700; }.toolbar { display:flex; align-items:center; gap:13px; min-height:64px; padding:0 26px; border-bottom:1px solid var(--line); }.toolbar label { color:#777; font-size:13px; }.toolbar label.is-active { color:#171214; font-weight:700; }.toolbar-spacer { flex:1; }.download { padding:8px 11px; border:1px solid #ddd9da; border-radius:7px; background:#fff; color:#343034; font-size:12px; }.open-site { padding:10px 13px; border:0; border-radius:7px; background:#20161b; color:#fff; font-size:12px; font-weight:600; text-decoration:none; }
+    .spec { flex:1; overflow:auto; padding:36px clamp(26px,4vw,64px) 90px; }.doc { width:min(100%, 880px); }.doc h1 { margin:0; color:#264d67; font:600 23px/1.25 var(--mono); }.doc h2 { margin:48px 0 18px; color:#264d67; font:600 19px/1.3 var(--mono); }.doc h3 { margin:30px 0 12px; color:#264d67; font:600 15px/1.3 var(--mono); }.doc p { max-width:76ch; color:#332d30; font:14px/1.7 var(--mono); }.code-view { margin:0; color:#283e50; font:12px/1.72 var(--mono); white-space:pre-wrap; word-break:break-word; }.lead { color:#8b3d62 !important; }.meta { color:#514b4e !important; }.palette-group + .palette-group { margin-top:30px; }.palette-label { margin:0 0 12px !important; color:#746e72 !important; font:600 11px/1.2 var(--mono) !important; letter-spacing:.08em; text-transform:uppercase; }.palette-grid { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:16px; }.palette-grid--brand { grid-template-columns:minmax(0,180px); }.color-card { min-width:0; }.color-swatch { width:100%; aspect-ratio:1.45; border:1px solid rgba(22,7,13,.13); border-radius:16px; }.color-card b { display:block; margin-top:11px; color:#21181c; font-size:13px; letter-spacing:-.03em; }.color-card code { display:block; margin-top:3px; color:#746e72; font:11px/1.35 var(--mono); }.color-card span { display:block; margin-top:8px; color:#5f585c; font-size:12px; line-height:1.45; }.type-row { display:grid; grid-template-columns:160px 1fr; gap:20px; padding:19px 0; border-bottom:1px solid #eee8ea; }.type-row:last-child { border-bottom:0; }.type-name { color:#746e72; font:12px var(--mono); }.type-example { font-family:var(--sans); font-size:clamp(18px,2vw,31px); letter-spacing:-.065em; }.type-example.mono { font:500 clamp(14px,1.35vw,20px) var(--mono); letter-spacing:-.035em; }.list { display:grid; gap:10px; padding:0; list-style:none; }.list li { display:grid; grid-template-columns:120px 1fr; gap:14px; padding:13px 0; border-bottom:1px solid #eee8ea; color:#514b4e; font:13px/1.55 var(--mono); }.list b { color:#264d67; }.notice { margin-top:36px; padding:18px 20px; border-left:3px solid var(--pink); background:#fff5f8; color:#503b43; font:12px/1.65 var(--mono); white-space:pre-wrap; }
+    @media(max-width:900px) { body { overflow:auto; }.topbar { height:64px; padding:0 16px; font-size:21px; }.mark { width:38px; height:38px; border-width:3px; font-size:21px; }.app { display:block; height:auto; }.preview-pane { overflow:visible; border-right:0; border-bottom:1px solid var(--line); }.preview-wrap { width:min(100% - 40px,620px); margin:28px auto 42px; }.human-section { margin-top:30px; }.spec-pane { min-height:770px; }.tabs { min-height:58px; padding:0 12px; }.toolbar { min-height:56px; padding:0 16px; }.toolbar label { display:none; }.toolbar label.is-active { display:block; }.download { display:none; }.spec { padding:28px 20px 60px; }.doc h1 { font-size:18px; }.doc h2 { margin-top:36px; font-size:16px; }.doc p { font-size:12px; }.type-row,.list li { grid-template-columns:1fr; gap:7px; }.live-preview { min-height:350px; }.preview-body { margin:56px 0 0 8%; }.preview-copy > p { font-size:13px; } }
+  </style>
+</head>
+<body>
+  <header class="topbar"><span class="mark">A</span><span class="slash">/</span><span class="crumb">Styles</span><span class="slash">/</span><span class="crumb">Ada Design System Example</span></header>
+  <main class="app">
+    <aside class="preview-pane" aria-label="Ada Design System Example landing page preview">
+      <div class="preview-wrap">
+        <article class="live-preview">
+          <div class="preview-nav"><strong>▲ adal</strong><span>Products　 Student　 Community　 Docs　 Pricing</span></div>
+          <div class="preview-body"><h1>Summon your<br><span class="brush">agent familiar</span></h1><p>AdaL is the automation-first agent harness.</p><div class="command"><b>›</b><span>curl -fsSL https://adal.sylph.ai/install.sh | bash</span><button type="button">Copy</button></div></div>
+        </article>
+        <div class="preview-copy"><div class="preview-title"><h1>Ada Design System Example</h1><span class="adal-mini">A</span></div><p>Pink canvas. Dark interface. One clear action.</p></div>
+        <section class="human-section" aria-label="Ada Design System Example color palette"><h2>Color Palette</h2><p>Human reference: color roles at a glance.</p><div class="palette-group"><p class="palette-label">Brand</p><div class="human-color-grid human-color-grid--brand"><article class="human-color"><div class="human-color-swatch" style="background:#ff5898"></div><b>AdaL Pink</b><code>#FF5898</code><span>Primary page canvas and identity signal.</span></article></div></div><div class="palette-group"><p class="palette-label">Accent</p><div class="human-color-grid"><article class="human-color"><div class="human-color-swatch" style="background:#ffffff"></div><b>Hero White</b><code>#FFFFFF</code><span>Display type and high-priority actions.</span></article><article class="human-color"><div class="human-color-swatch" style="background:#ffb2cf"></div><b>Pink Soft</b><code>#FFB2CF</code><span>Prompt marks and small supporting accents.</span></article></div></div><div class="palette-group"><p class="palette-label">Neutrals</p><div class="human-color-grid"><article class="human-color"><div class="human-color-swatch" style="background:#16070d"></div><b>Ink</b><code>#16070D</code><span>Navigation, outlines, and contrast anchor.</span></article><article class="human-color"><div class="human-color-swatch" style="background:#21131a"></div><b>Panel</b><code>#21131A</code><span>Command shells and raised controls.</span></article></div></div></section>
+        <section class="human-section" aria-label="Ada Design System Example typography"><h2>Typography</h2><p>Space Grotesk carries the product voice. Mono text carries utility.</p><div class="type-scale"><div class="type-sample"><span class="type-meta"><b>Display</b>80px · 500 · .88</span><span class="type-hero">Summon</span></div><div class="type-sample"><span class="type-meta"><b>Heading</b>32px · 500 · .95</span><span class="type-heading">One clear action.</span></div><div class="type-sample"><span class="type-meta"><b>Body</b>16px · 500 · 1.55</span><span class="type-body">A concise product explanation.</span></div><div class="type-sample"><span class="type-meta"><b>Utility</b>12px · mono · 1.4</span><span class="type-mono">curl -fsSL … | bash</span></div></div></section>
+        <section class="human-section" aria-label="Ada Design System Example spacing and shape"><h2>Spacing &amp; Shape</h2><p>One simple geometry system keeps the interface quiet.</p><div class="shape-grid"><article class="shape-card"><div class="shape-sample">CARD</div><b>8px</b><span>Cards</span></article><article class="shape-card"><div class="shape-sample">COMMAND</div><b>12px</b><span>Commands</span></article><article class="shape-card"><div class="shape-sample">PILL</div><b>999px</b><span>Nav / CTA</span></article></div><div class="elevation" style="margin-top:16px"><div class="elevation-sample">Navigation<br><small>Soft warm shadow</small></div><div class="elevation-sample elevation-sample--flat">Content<br><small>Border only</small></div></div></section>
+        <section class="human-section" aria-label="Ada Design System Example guidelines"><h2>Guidelines</h2><div class="guideline-group"><p class="guideline-label">Do</p><div class="guideline">Use pink as the page world and near-black for functional interface surfaces.</div><div class="guideline">Keep one dominant promise and one useful action in the hero.</div><div class="guideline">Use one expressive focal visual; let the rest stay quiet.</div></div><div class="guideline-group"><p class="guideline-label">Don’t</p><div class="guideline guideline--dont">Add unrelated accent colors or competing gradients.</div><div class="guideline guideline--dont">Use multiple primary CTAs in one viewport.</div><div class="guideline guideline--dont">Turn utility text into the visual headline.</div></div></section>
+      </div>
+    </aside>
+
+    <section class="spec-pane" aria-label="Ada Design System Example design specification">
+      <nav class="tabs" aria-label="Specification format"><button class="tab is-active" type="button" data-tab="design">DESIGN.md</button><button class="tab" type="button" data-tab="tailwind">Tailwind v4</button><button class="tab" type="button" data-tab="css">CSS Variables</button><button class="tab" type="button" data-tab="tokens">Design Tokens</button></nav>
+      <div class="toolbar"><label>Compact</label><label class="is-active">Extended</label><span class="toolbar-spacer"></span><button class="download" type="button" id="copy-spec">Copy</button><a class="open-site" href="https://adalagent.ai/" target="_blank" rel="noopener">Open AdaL ↗</a></div>
+      <article class="spec" id="spec-scroll"><div class="doc" id="design">
+        <h1># Ada Design System Example — Landing Page Reference</h1>
+        <p class="lead">&gt; A saturated pink stage for an automation-first agent. The dark interface is compact, functional, and intentionally quiet.</p>
+        <p class="meta">**Theme:** black / pink / high-contrast product editorial</p>
+        <p>Ada Design System Example pairs a vivid pink canvas with near-black interface surfaces. Space Grotesk carries the display and UI roles; mono text is reserved for commands and utility labels. Navigation and controls stay compact so the product promise remains dominant.</p>
+
+        <h2>## Tokens — Colors</h2>
+        <p>The visual palette is shown in the left human-reference pane. Use these names in implementation: <code>--adal-pink: #FF5898</code>, <code>--adal-ink: #16070D</code>, <code>--adal-panel: #21131A</code>, <code>--adal-white: #FFFFFF</code>, and <code>--adal-pink-soft: #FFB2CF</code>.</p>
+
+        <h2>## Tokens — Typography</h2>
+        <div class="type-row"><span class="type-name">display / Space Grotesk</span><span class="type-example">Summon your agent familiar</span></div>
+        <div class="type-row"><span class="type-name">interface / Space Grotesk</span><span class="type-example" style="font-size:20px;font-weight:600">One strong message. One useful action.</span></div>
+        <div class="type-row"><span class="type-name">utility / mono</span><span class="type-example mono">curl -fsSL https://adal.sylph.ai/install.sh | bash</span></div>
+
+        <h2>## Spacing &amp; Shape</h2>
+        <ul class="list"><li><b>Base unit</b><span>Use a 4px rhythm. Let larger gaps scale in clear multiples rather than inventing one-off spacing.</span></li><li><b>Page frame</b><span>Keep content wide but bounded: the hero breathes, while commands and paragraphs maintain readable line lengths.</span></li><li><b>Surface radius</b><span>Use 12px for command surfaces and 999px only for navigation or button pills.</span></li><li><b>Depth</b><span>Use a subtle border and one soft warm shadow beneath dark floating surfaces. Do not stack shadows.</span></li></ul>
+
+        <h2>## Layout Rules</h2>
+        <ul class="list"><li><b>Hero</b><span>One oversized two-line promise, short technical explanation, then the install command.</span></li><li><b>Interface</b><span>Float dark, rounded controls on the pink canvas. Keep labels small and readable.</span></li><li><b>Focal object</b><span>Use one expressive visual—such as the page-peel mascot—not several competing decorations.</span></li><li><b>Chapters</b><span>Each product section gets one outcome, one proof point, and one visual demonstration.</span></li><li><b>Mobile</b><span>Preserve pink canvas and dark command surface; collapse navigation and stack content without horizontal overflow.</span></li></ul>
+
+        <h2>## Guidelines</h2>
+        <ul class="list"><li><b>Do</b><span>Use pink as the large product canvas and near-black as the functional control layer.</span></li><li><b>Do</b><span>Keep Space Grotesk tight and oversized for product promises; reserve mono text for commands, tabs, and utility labels.</span></li><li><b>Do</b><span>Let one expressive visual carry personality while the rest of the interface stays quiet.</span></li><li><b>Don’t</b><span>Turn every section pink, add competing gradients, or introduce unrelated chromatic accents.</span></li><li><b>Don’t</b><span>Use several primary CTAs in one viewport or decorate the layout until the product message is harder to read.</span></li></ul>
+
+        <h2>## Component Kit</h2>
+        <ul class="list"><li><b>Header</b><span>Mascot icon, centered dark nav pill, white conversion action.</span></li><li><b>Command</b><span>Dark terminal surface with mono command text and an explicit copy button.</span></li><li><b>Underline</b><span>Irregular dark brush mark beneath the hero’s emphasis phrase.</span></li><li><b>Proof</b><span>Logos, workflow steps, and product screenshots remain secondary to the promise.</span></li></ul>
+
+        <div class="notice"><b>&gt;</b> Build an original landing page for MY_PRODUCT using this visual system as direction only. Use a saturated pink hero canvas, near-black floating interface surfaces, oversized tight white display type, compact mono utility text, and one expressive focal visual. Keep one product promise, one short explanation, and one practical primary action. Do not copy AdaL’s brand, words, mascot, or assets. Verify desktop and mobile in a browser.</div>
+      </div></article>
+    </section>
+  </main>
+  <script>
+    const tabs = document.querySelectorAll('.tab');
+    const scroll = document.getElementById('spec-scroll');
+    const doc = document.getElementById('design');
+    const designMarkup = doc.innerHTML;
+    const tabContent = {
+      tailwind: `// Ada Design System Example landing-page direction — Tailwind v4
+// Apply these tokens before composing the hero and product chapters.
+
+@theme {
+  --font-display: "Space Grotesk", system-ui, sans-serif;
+  --font-ui: "Space Grotesk", system-ui, sans-serif;
+  --font-utility: "SF Mono", Menlo, monospace;
+  --color-adal-pink: #FF5898;
+  --color-adal-ink: #16070D;
+  --color-adal-panel: #21131A;
+  --color-adal-pink-soft: #FFB2CF;
+}
+
+<section className="relative overflow-hidden bg-adal-pink text-white">
+  <header className="mx-auto flex max-w-[2200px] items-center justify-between px-6 py-6">
+    <div className="h-12 w-12 rounded-full border border-white/15 bg-adal-panel" />
+    <nav className="rounded-full border border-white/10 bg-adal-panel px-5 py-3 font-utility text-xs" />
+  </header>
+  <div className="mx-auto max-w-[2200px] px-6 pb-16 pt-28 lg:px-16">
+    <h1 className="font-display text-[clamp(3.25rem,4.8vw,7rem)] font-medium leading-[.88] tracking-[-.06em]">
+      Summon your<br />agent familiar
+    </h1>
+    <p className="mt-10 max-w-xl font-utility text-sm leading-6">One concise product explanation.</p>
+    <div className="mt-10 max-w-[680px] rounded-xl border border-white/25 bg-adal-panel p-4 font-utility">› install command</div>
+  </div>
+</section>
+
+// Rules: pink is the canvas; near-black is the interface.
+// Use one large promise, one expressive visual, and one primary action.`,
+      css: `:root {
+  --adal-pink: #FF5898;
+  --adal-ink: #16070D;
+  --adal-panel: #21131A;
+  --adal-pink-soft: #FFB2CF;
+  --adal-white: #FFFFFF;
+  --font-display: "Space Grotesk", system-ui, sans-serif;
+  --font-utility: "SF Mono", Menlo, monospace;
+}
+
+.landing-hero {
+  position: relative;
+  overflow: hidden;
+  min-height: 100svh;
+  padding: clamp(5rem, 10vw, 10rem) clamp(1.5rem, 7vw, 8.75rem);
+  color: var(--adal-white);
+  background:
+    radial-gradient(ellipse 75% 68% at 23% 30%, rgba(255,255,255,.19), transparent 67%),
+    linear-gradient(180deg, var(--adal-pink), #E84D87);
+}
+
+.landing-hero h1 {
+  max-width: 10ch;
+  margin: 0;
+  font: 500 clamp(3.25rem, 7.2vw, 8.1rem)/.88 var(--font-display);
+  letter-spacing: -.085em;
+}
+
+.command-surface {
+  display: flex;
+  align-items: center;
+  width: min(100%, 680px);
+  margin-top: 2rem;
+  padding: 1.25rem;
+  border: 1px solid rgba(255,255,255,.24);
+  border-radius: 12px;
+  background: var(--adal-panel);
+  box-shadow: 0 22px 48px rgba(68,9,33,.31);
+  font-family: var(--font-utility);
+}
+
+@media (max-width: 760px) {
+  .landing-hero { min-height: auto; padding-block: 5rem; }
+  .landing-hero h1 { font-size: clamp(3.1rem, 14vw, 5.4rem); }
+}`,
+      tokens: `{
+  "color": {
+    "adal-pink": { "value": "#FF5898", "role": "Primary page canvas and identity signal" },
+    "adal-ink": { "value": "#16070D", "role": "Navigation, outlines, and contrast anchor" },
+    "adal-panel": { "value": "#21131A", "role": "Command shells and raised controls" },
+    "adal-white": { "value": "#FFFFFF", "role": "Hero display type and actions" },
+    "adal-pink-soft": { "value": "#FFB2CF", "role": "Prompt marks and supporting accents" }
+  },
+  "typography": {
+    "display": { "family": "Space Grotesk", "weight": 500, "lineHeight": 0.88, "tracking": "-0.06em" },
+    "ui": { "family": "Space Grotesk", "weight": 500, "lineHeight": 1.5 },
+    "utility": { "family": "SF Mono", "weight": 500, "lineHeight": 1.4 }
+  },
+  "spacing": { "base": "4px", "section": "80px", "element": "20px", "card": "32px" },
+  "radius": { "card": "8px", "command": "12px", "pill": "999px" },
+  "rules": [
+    "Pink is the product canvas; ink is the control layer.",
+    "Use one oversized promise and one practical primary action.",
+    "Use one expressive focal visual per viewport.",
+    "Stack content on mobile; do not allow horizontal overflow."
+  ]
+}`
+    };
+    tabs.forEach((tab) => tab.addEventListener('click', () => {
+      tabs.forEach((item) => item.classList.remove('is-active'));
+      tab.classList.add('is-active');
+      const key = tab.dataset.tab;
+      if (key === 'design') {
+        doc.innerHTML = designMarkup;
+      } else {
+        const code = document.createElement('pre');
+        code.className = 'code-view';
+        code.textContent = tabContent[key];
+        doc.replaceChildren(code);
+      }
+      scroll.scrollTo({ top: 0, behavior: 'smooth' });
+    }));
+    document.getElementById('copy-spec').addEventListener('click', async (event) => {
+      const button = event.currentTarget;
+      const text = document.querySelector('.doc').innerText;
+      const fallbackCopy = () => {
+        const textarea = document.createElement('textarea');
+        textarea.value = text;
+        textarea.setAttribute('readonly', '');
+        textarea.style.cssText = 'position:fixed;opacity:0;pointer-events:none;';
+        document.body.appendChild(textarea);
+        textarea.select();
+        const copied = document.execCommand('copy');
+        textarea.remove();
+        return copied;
+      };
+      try {
+        if (navigator.clipboard?.writeText) await navigator.clipboard.writeText(text);
+        else if (!fallbackCopy()) throw new Error('Copy unavailable');
+        button.textContent = 'Copied';
+      } catch {
+        button.textContent = fallbackCopy() ? 'Copied' : 'Select text';
+      }
+      setTimeout(() => { button.textContent = 'Copy'; }, 1400);
+    });
+  </script>
+</body>
+</html>
